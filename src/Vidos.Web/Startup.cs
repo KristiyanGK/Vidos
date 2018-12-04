@@ -38,7 +38,7 @@ namespace Vidos.Web
 
             services.AddDbContext<VidosContext>(options =>
                 options.UseSqlServer(
-                    this.Configuration.GetConnectionString("VidosContextConnection")));
+                    this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<VidosUser>()
                 .AddEntityFrameworkStores<VidosContext>();
