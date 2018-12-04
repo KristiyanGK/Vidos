@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Vidos.Data\Vidos.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
+  </ItemGroup>
+
 </Project>

@@ -19,6 +19,18 @@ namespace Vidos.Data.Models
 
         public string Brand { get; set; }
 
+        public string Description { get; set; }
+
+        public string Origin { get; set; }
+
+        public double Cooling { get; set; } // kW
+
+        public double HeatingConsumption { get; set; } // kW
+
+        public double Heating { get; set; } // kW
+
+        public double CoolingConsumption { get; set; } // kW
+
         public ICollection<CartItem> ShoppingCarItems { get; set; }
     }
 }

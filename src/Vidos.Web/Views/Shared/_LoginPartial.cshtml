@@ -1,7 +1,8 @@
 @using Microsoft.AspNetCore.Identity
+@using Vidos.Data.Models
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<VidosUser> SignInManager
+@inject UserManager<VidosUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {

@@ -140,7 +140,19 @@ namespace Vidos.Data.Migrations
 
                     b.Property<string>("Brand");
 
+                    b.Property<double>("Cooling");
+
+                    b.Property<double>("CoolingConsumption");
+
+                    b.Property<string>("Description");
+
+                    b.Property<double>("Heating");
+
+                    b.Property<double>("HeatingConsumption");
+
                     b.Property<string>("Name");
+
+                    b.Property<string>("Origin");
 
                     b.Property<string>("PaymentTypeId");
 

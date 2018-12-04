@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Vidos.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class secon : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -176,6 +176,12 @@ namespace Vidos.Data.Migrations
                     Price = table.Column<decimal>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Brand = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Origin = table.Column<string>(nullable: true),
+                    Cooling = table.Column<double>(nullable: false),
+                    HeatingConsumption = table.Column<double>(nullable: false),
+                    Heating = table.Column<double>(nullable: false),
+                    CoolingConsumption = table.Column<double>(nullable: false),
                     PaymentTypeId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

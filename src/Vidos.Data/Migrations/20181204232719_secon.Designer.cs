@@ -10,8 +10,8 @@ using Vidos.Data;
 namespace Vidos.Data.Migrations
 {
     [DbContext(typeof(VidosContext))]
-    [Migration("20181204225817_Initial")]
-    partial class Initial
+    [Migration("20181204232719_secon")]
+    partial class secon
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -142,7 +142,19 @@ namespace Vidos.Data.Migrations
 
                     b.Property<string>("Brand");
 
+                    b.Property<double>("Cooling");
+
+                    b.Property<double>("CoolingConsumption");
+
+                    b.Property<string>("Description");
+
+                    b.Property<double>("Heating");
+
+                    b.Property<double>("HeatingConsumption");
+
                     b.Property<string>("Name");
+
+                    b.Property<string>("Origin");
 
                     b.Property<string>("PaymentTypeId");
 
