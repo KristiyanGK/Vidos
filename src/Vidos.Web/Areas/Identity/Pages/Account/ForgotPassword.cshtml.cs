@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Vidos.Web.Areas.Identity.Data;
+using Vidos.Data.Models;
 
 namespace Vidos.Web.Areas.Identity.Pages.Account
 {

@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Web", "Vidos.Web\Vidos.Web.csproj", "{2D53B1BD-2B9F-4996-B6D2-9F2A65A46049}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Data", "Vidos.Data\Vidos.Data.csproj", "{4CFBB0AF-8DA3-4068-B987-04DC85B01203}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Data.Models", "Vidos.Data.Models\Vidos.Data.Models.csproj", "{DD717B63-F797-457A-97FB-468BEEA9057F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{2D53B1BD-2B9F-4996-B6D2-9F2A65A46049}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D53B1BD-2B9F-4996-B6D2-9F2A65A46049}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D53B1BD-2B9F-4996-B6D2-9F2A65A46049}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CFBB0AF-8DA3-4068-B987-04DC85B01203}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CFBB0AF-8DA3-4068-B987-04DC85B01203}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CFBB0AF-8DA3-4068-B987-04DC85B01203}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CFBB0AF-8DA3-4068-B987-04DC85B01203}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD717B63-F797-457A-97FB-468BEEA9057F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD717B63-F797-457A-97FB-468BEEA9057F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD717B63-F797-457A-97FB-468BEEA9057F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD717B63-F797-457A-97FB-468BEEA9057F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

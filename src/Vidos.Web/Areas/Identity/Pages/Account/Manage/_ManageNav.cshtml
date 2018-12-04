@@ -1,4 +1,5 @@
-﻿@inject SignInManager<VidosUser> SignInManager
+﻿@using Vidos.Data.Models
+@inject SignInManager<VidosUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
