@@ -23,13 +23,13 @@ namespace Vidos.Web.Middlewares
                 await roleManager.CreateAsync(new IdentityRole { Name = Constants.AdministratorRole });
             }
 
-            var userRoleExists = (await roleManager.RoleExistsAsync(Constants.User));
+            var userRoleExists = (await roleManager.RoleExistsAsync(Constants.UserRole));
             if (!userRoleExists)
             {
-                await roleManager.CreateAsync(new IdentityRole { Name = Constants.User });
+                await roleManager.CreateAsync(new IdentityRole { Name = Constants.UserRole });
             }
 
-            var adminUserExists = await userManager.FindByNameAsync(Constants.AdministratorRole) != null;
+            var adminUserExists = await userManager.FindByNameAsync(Constants.AdministratorName) != null;
             if (!adminUserExists)
             {
                 var user = new VidosUser
@@ -38,6 +38,7 @@ namespace Vidos.Web.Middlewares
                     Email = Constants.AdministratorEmail,
                     FirstName = Constants.AdministratorName,
                     LastName = Constants.AdministratorName,
+                    Address = Constants.AdministratorName
                 };
 
                 await userManager.CreateAsync(user, Constants.AdministratorPassword);

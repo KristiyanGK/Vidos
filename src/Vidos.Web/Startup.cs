@@ -42,13 +42,16 @@ namespace Vidos.Web
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<VidosUser>(options =>
+            services.AddIdentity<VidosUser, IdentityRole>(options =>
                 {
                     options.Password = new DevelopmentPasswordOptions();
                 })
-                .AddEntityFrameworkStores<VidosContext>();
+                .AddEntityFrameworkStores<VidosContext>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services
+                .AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
