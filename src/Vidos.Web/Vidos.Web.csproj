@@ -12,12 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Vidos.Common\Vidos.Common.csproj" />
     <ProjectReference Include="..\Vidos.Data.Models\Vidos.Data.Models.csproj" />
     <ProjectReference Include="..\Vidos.Data\Vidos.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Identity\Services\" />
   </ItemGroup>
 
 </Project>

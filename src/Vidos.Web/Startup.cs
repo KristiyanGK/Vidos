@@ -13,7 +13,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Vidos.Data;
 using Vidos.Data.Models;
+using Vidos.Web.Middlewares;
 using Vidos.Web.Models;
+using Vidos.Web.Utilities.PasswordOptions;
 
 namespace Vidos.Web
 {
@@ -40,7 +42,10 @@ namespace Vidos.Web
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<VidosUser>()
+            services.AddDefaultIdentity<VidosUser>(options =>
+                {
+                    options.Password = new DevelopmentPasswordOptions();
+                })
                 .AddEntityFrameworkStores<VidosContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -65,6 +70,8 @@ namespace Vidos.Web
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            app.UseRolesWithAdminSeeder();
 
             app.UseMvc(routes =>
             {

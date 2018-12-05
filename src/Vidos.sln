@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Data", "Vidos.Data\Vi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Data.Models", "Vidos.Data.Models\Vidos.Data.Models.csproj", "{DD717B63-F797-457A-97FB-468BEEA9057F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Common", "Vidos.Common\Vidos.Common.csproj", "{CC152BA7-1AF5-444A-B169-BBF1283384F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DD717B63-F797-457A-97FB-468BEEA9057F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD717B63-F797-457A-97FB-468BEEA9057F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD717B63-F797-457A-97FB-468BEEA9057F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC152BA7-1AF5-444A-B169-BBF1283384F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC152BA7-1AF5-444A-B169-BBF1283384F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC152BA7-1AF5-444A-B169-BBF1283384F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC152BA7-1AF5-444A-B169-BBF1283384F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
