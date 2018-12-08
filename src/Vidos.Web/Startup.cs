@@ -13,9 +13,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Vidos.Data;
 using Vidos.Data.Models;
+using Vidos.Web.Configurations.PasswordOptions;
 using Vidos.Web.Middlewares;
 using Vidos.Web.Models;
-using Vidos.Web.Utilities.PasswordOptions;
 
 namespace Vidos.Web
 {
@@ -80,7 +80,13 @@ namespace Vidos.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=All}/{id?}"
+                    );
+
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
             });
         }
     }

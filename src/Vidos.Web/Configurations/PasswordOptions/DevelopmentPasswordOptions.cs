@@ -1,4 +1,4 @@
-﻿namespace Vidos.Web.Utilities.PasswordOptions
+﻿namespace Vidos.Web.Configurations.PasswordOptions
 {
     public class DevelopmentPasswordOptions : Microsoft.AspNetCore.Identity.PasswordOptions
     {
