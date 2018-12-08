@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Services.DataServices
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Services.Models", "Vidos.Services.Models\Vidos.Services.Models.csproj", "{FDDEE93D-3A71-4230-AD30-683393DAD750}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Services.Mapping", "Vidos.Services.Mapping\Vidos.Services.Mapping.csproj", "{F4E6FF1C-74B1-41F2-A75C-F68F878FC7F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{FDDEE93D-3A71-4230-AD30-683393DAD750}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDDEE93D-3A71-4230-AD30-683393DAD750}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDDEE93D-3A71-4230-AD30-683393DAD750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4E6FF1C-74B1-41F2-A75C-F68F878FC7F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4E6FF1C-74B1-41F2-A75C-F68F878FC7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4E6FF1C-74B1-41F2-A75C-F68F878FC7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4E6FF1C-74B1-41F2-A75C-F68F878FC7F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{BB2A2D88-BE8E-471E-AD95-3F45B2B26C58} = {80E3C7EB-7350-4BBA-9518-BCF24C3E14BE}
 		{BE03C27F-AD69-4E16-8138-87F10AB165C9} = {772548E9-F61F-4C35-BCD9-60F74E9690EC}
 		{FDDEE93D-3A71-4230-AD30-683393DAD750} = {772548E9-F61F-4C35-BCD9-60F74E9690EC}
+		{F4E6FF1C-74B1-41F2-A75C-F68F878FC7F7} = {772548E9-F61F-4C35-BCD9-60F74E9690EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E789EA61-CAA5-44B6-8D04-B7285CDD5A83}

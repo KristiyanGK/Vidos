@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
@@ -19,7 +20,9 @@ namespace Vidos.Services.DataServices
 
         public IEnumerable<AllProductsViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            //var list = this._repo.All().Select(x => ).ToList();
+
+            return null;
         }
     }
 }
