@@ -1,12 +1,10 @@
-﻿@using System.IO
-@using Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
 @model IEnumerable<Vidos.Services.Models.ViewModels.AllProductsViewModel>
 
 @{
     ViewData["Title"] = "All";
 }
-
-<h2>All</h2>
 
 <table class="table">
     <thead>
@@ -27,25 +25,28 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <!--TODO Fix this-->
-                <img src="~/@item.ImagePath.Substring(item.ImagePath.IndexOf("image"))"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <!--TODO Fix this-->
+                    <img src="~/@item.ImagePath.Substring(item.ImagePath.IndexOf("image"))" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("All", new { page }))
