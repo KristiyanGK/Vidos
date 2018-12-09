@@ -18,7 +18,7 @@ using Vidos.Data.Models;
 using Vidos.Services.DataServices;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Mapping;
-using Vidos.Services.Models;
+using Vidos.Services.Models.ViewModels;
 using Vidos.Web.Configurations.PasswordOptions;
 using Vidos.Web.Middlewares;
 using Vidos.Web.Models;
