@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" PrivateAssets="All" />
@@ -15,6 +17,7 @@
     <ProjectReference Include="..\Vidos.Common\Vidos.Common.csproj" />
     <ProjectReference Include="..\Vidos.Data.Models\Vidos.Data.Models.csproj" />
     <ProjectReference Include="..\Vidos.Data\Vidos.Data.csproj" />
+    <ProjectReference Include="..\Vidos.Services.DataServices\Vidos.Services.DataServices.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,7 +25,6 @@
     <Folder Include="Areas\Administration\Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\" />
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>

@@ -9,13 +9,20 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Vidos.Data;
+using Vidos.Data.Common;
 using Vidos.Data.Models;
+using Vidos.Services.DataServices;
+using Vidos.Services.DataServices.Contracts;
+using Vidos.Services.Mapping;
+using Vidos.Services.Models;
 using Vidos.Web.Configurations.PasswordOptions;
 using Vidos.Web.Middlewares;
 using Vidos.Web.Models;
+using Vidos.Web.Utilities;
 
 namespace Vidos.Web
 {
@@ -30,7 +37,11 @@ namespace Vidos.Web
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        { 
+            AutoMapperConfig.RegisterMappings(
+                typeof(AllProductsViewModel).Assembly
+                );
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -50,17 +61,28 @@ namespace Vidos.Web
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
 
+            services.AddAutoMapper();
+            
+            services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
+            services.AddScoped<IProductsService, ProductsService>();
+            services.AddTransient<Seeder>();
+
             services
                 .AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IHostingEnvironment env,
+            Seeder seeder)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+
+                seeder.Seed();
             }
             else
             {
@@ -80,12 +102,12 @@ namespace Vidos.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=All}/{id?}"
+                    template: "{controller=Home}/{action=Index}/{id?}"
                     );
 
                 routes.MapRoute(
                     name: "areas",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                    template: "{area:exists}/{controller}/{action}/{id?}"
                 );
             });
         }

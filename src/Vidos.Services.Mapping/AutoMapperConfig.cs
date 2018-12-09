@@ -8,16 +8,16 @@ namespace Vidos.Services.Mapping
 {
     public static class AutoMapperConfig
     {
-        private static bool initialized;
+        private static bool _initialized;
 
         public static void RegisterMappings(params Assembly[] assemblies)
         {
-            if (initialized)
+            if (_initialized)
             {
                 return;
             }
 
-            initialized = true;
+            _initialized = true;
 
             var types = assemblies.SelectMany(a => a.GetExportedTypes()).ToList();
             Mapper.Initialize(configuration =>

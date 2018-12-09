@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Vidos.Data.Common\Vidos.Data.Common.csproj" />
     <ProjectReference Include="..\Vidos.Data.Models\Vidos.Data.Models.csproj" />
   </ItemGroup>
 
