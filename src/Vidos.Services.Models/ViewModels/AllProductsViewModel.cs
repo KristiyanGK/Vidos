@@ -9,6 +9,8 @@ namespace Vidos.Services.Models.ViewModels
 
         private string description;
 
+        public string Id { get; set; }
+
         public string Name { get; set; }
 
         public decimal Price { get; set; }

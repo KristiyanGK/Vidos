@@ -39,7 +39,8 @@ namespace Vidos.Web
         public void ConfigureServices(IServiceCollection services)
         { 
             AutoMapperConfig.RegisterMappings(
-                typeof(AllProductsViewModel).Assembly
+                typeof(AllProductsViewModel).Assembly,
+                typeof(ProductDetailsViewModel).Assembly
                 );
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -65,6 +66,7 @@ namespace Vidos.Web
             
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddScoped<IProductsService, ProductsService>();
+
             services.AddTransient<Seeder>();
 
             services

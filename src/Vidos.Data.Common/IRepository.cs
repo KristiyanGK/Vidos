@@ -13,5 +13,7 @@ namespace Vidos.Data.Common
         void Delete(TEntity entity);
 
         Task<int> SaveChangesAsync();
+
+        TEntity FindById(string id);
     }
 }

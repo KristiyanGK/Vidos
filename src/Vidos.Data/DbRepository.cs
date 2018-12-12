@@ -9,38 +9,43 @@ namespace Vidos.Data
     public class DbRepository<TEntity> : IRepository<TEntity>, IDisposable
         where TEntity : class 
     {
-        private readonly VidosContext context;
-        private DbSet<TEntity> dbSet;
+        private readonly VidosContext _context;
+        private DbSet<TEntity> _dbSet;
 
         public DbRepository(VidosContext context)
         {
-            this.context = context;
-            this.dbSet = this.context.Set<TEntity>();
+            this._context = context;
+            this._dbSet = this._context.Set<TEntity>();
         }
 
         public Task AddAsync(TEntity entity)
         {
-            return this.dbSet.AddAsync(entity);
+            return this._dbSet.AddAsync(entity);
         }
 
         public IQueryable<TEntity> All()
         {
-            return this.dbSet;
+            return this._dbSet;
         }
 
         public void Delete(TEntity entity)
         {
-            this.dbSet.Remove(entity);
+            this._dbSet.Remove(entity);
         }
 
         public Task<int> SaveChangesAsync()
         {
-            return this.context.SaveChangesAsync();
+            return this._context.SaveChangesAsync();
+        }
+
+        public TEntity FindById(string id)
+        {
+            return this._dbSet.Find(id);
         }
 
         public void Dispose()
         {
-            this.context.Dispose();
+            this._context.Dispose();
         }
     }
 }

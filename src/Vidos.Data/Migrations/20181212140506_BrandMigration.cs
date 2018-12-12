@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Vidos.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class BrandMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,6 +48,18 @@ namespace Vidos.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Brands",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brands", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -175,7 +187,7 @@ namespace Vidos.Data.Migrations
                     Id = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Brand = table.Column<string>(nullable: true),
+                    BrandId = table.Column<string>(nullable: true),
                     ImagePath = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Origin = table.Column<string>(nullable: true),
@@ -188,6 +200,12 @@ namespace Vidos.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AirConditioners", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AirConditioners_Brands_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "Brands",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AirConditioners_PaymentTypes_PaymentTypeId",
                         column: x => x.PaymentTypeId,
@@ -266,6 +284,11 @@ namespace Vidos.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AirConditioners_BrandId",
+                table: "AirConditioners",
+                column: "BrandId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AirConditioners_PaymentTypeId",
@@ -365,6 +388,9 @@ namespace Vidos.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Carts");
+
+            migrationBuilder.DropTable(
+                name: "Brands");
 
             migrationBuilder.DropTable(
                 name: "Payments");

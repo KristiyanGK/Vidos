@@ -13,6 +13,8 @@ namespace Vidos.Data
 
         public DbSet<AirConditioner> AirConditioners { get; set; }
 
+        public DbSet<Brand> Brands { get; set; }
+
         public DbSet<Payment> Payments { get; set; }
 
         public DbSet<PaymentType> PaymentTypes { get; set; }

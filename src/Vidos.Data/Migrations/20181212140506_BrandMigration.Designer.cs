@@ -10,8 +10,8 @@ using Vidos.Data;
 namespace Vidos.Data.Migrations
 {
     [DbContext(typeof(VidosContext))]
-    [Migration("20181209003702_initial")]
-    partial class initial
+    [Migration("20181212140506_BrandMigration")]
+    partial class BrandMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -136,7 +136,7 @@ namespace Vidos.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Brand");
+                    b.Property<string>("BrandId");
 
                     b.Property<double>("Cooling");
 
@@ -160,9 +160,23 @@ namespace Vidos.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BrandId");
+
                     b.HasIndex("PaymentTypeId");
 
                     b.ToTable("AirConditioners");
+                });
+
+            modelBuilder.Entity("Vidos.Data.Models.Brand", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("Vidos.Data.Models.Cart", b =>
@@ -337,6 +351,10 @@ namespace Vidos.Data.Migrations
 
             modelBuilder.Entity("Vidos.Data.Models.AirConditioner", b =>
                 {
+                    b.HasOne("Vidos.Data.Models.Brand", "Brand")
+                        .WithMany("Products")
+                        .HasForeignKey("BrandId");
+
                     b.HasOne("Vidos.Data.Models.PaymentType")
                         .WithMany("Products")
                         .HasForeignKey("PaymentTypeId");

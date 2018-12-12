@@ -22,13 +22,18 @@ namespace Vidos.Web.Utilities
                 return;
             }
 
-            string[] brands =
+            Brand[] brands =
             {
-                "Daikin",
-                "Mitsubishi",
-                "Fujitsu",
-                "Toshiba"
+                new Brand { Name = "Daikin"},
+                new Brand { Name = "Mitsubishi"},
+                new Brand { Name = "Fujitsu"},
+                new Brand { Name = "Toshiba"}
             };
+
+            for (int i = 0; i < brands.Length; i++)
+            {
+                _context.Brands.Add(brands[i]);
+            }
 
             string[] origins =
             {
@@ -62,9 +67,9 @@ namespace Vidos.Web.Utilities
                 };
 
                 _context.AirConditioners.Add(ac);
+            }
 
             _context.SaveChanges();
-            }
         }
     }
 }

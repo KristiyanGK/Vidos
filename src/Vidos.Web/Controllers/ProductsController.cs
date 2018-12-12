@@ -24,5 +24,13 @@ namespace Vidos.Web.Controllers
 
             return View(onePageOfProducts);
         }
+
+        [HttpGet]
+        public IActionResult Details(string id)
+        {
+            var product = this._productsService.GetProductById(id);
+
+            return View(product);
+        }
     }
 }

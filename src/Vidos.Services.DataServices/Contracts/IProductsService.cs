@@ -6,5 +6,6 @@ namespace Vidos.Services.DataServices.Contracts
     public interface IProductsService
     {
         IEnumerable<AllProductsViewModel> GetAll();
+        ProductDetailsViewModel GetProductById(string id);
     }
 }

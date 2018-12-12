@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
@@ -25,6 +27,20 @@ namespace Vidos.Services.DataServices
                 .ToList();
 
             return list;
+        }
+
+        public ProductDetailsViewModel GetProductById(string id)
+        {
+            var product = this._repo.FindById(id);
+
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+            
+            var productModel = Mapper.Map<ProductDetailsViewModel>(product);
+
+            return productModel;
         }
     }
 }
