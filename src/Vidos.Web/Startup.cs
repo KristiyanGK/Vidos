@@ -40,7 +40,8 @@ namespace Vidos.Web
         { 
             AutoMapperConfig.RegisterMappings(
                 typeof(AllProductsViewModel).Assembly,
-                typeof(ProductDetailsViewModel).Assembly
+                typeof(ProductDetailsViewModel).Assembly,
+                typeof(ProductCreationViewModel).Assembly
                 );
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -84,6 +85,7 @@ namespace Vidos.Web
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
 
+                //TODO Potentially use a web crawler to take sample data
                 seeder.Seed();
             }
             else
@@ -98,6 +100,7 @@ namespace Vidos.Web
 
             app.UseAuthentication();
 
+            //TODO Remove when in production
             app.UseRolesWithAdminSeeder();
 
             app.UseMvc(routes =>
