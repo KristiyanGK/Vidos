@@ -1,4 +1,5 @@
 ﻿@using X.PagedList
+@using X.PagedList.Mvc.Common
 @using X.PagedList.Mvc.Core
 @model IEnumerable<Vidos.Services.Models.ViewModels.AllProductsViewModel>
 
@@ -48,4 +49,8 @@
     </tbody>
 </table>
 
-@Html.PagedListPager((IPagedList)Model, page => Url.Action("All", new { page }))
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("All", new { page }), 
+new PagedListRenderOptions {
+    LiElementClasses = new string[] { "page-item" },
+    PageClasses = new string[] { "page-link" }
+})

@@ -152,15 +152,11 @@ namespace Vidos.Data.Migrations
 
                     b.Property<string>("Origin");
 
-                    b.Property<string>("PaymentTypeId");
-
                     b.Property<decimal>("Price");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
-
-                    b.HasIndex("PaymentTypeId");
 
                     b.ToTable("AirConditioners");
                 });
@@ -352,10 +348,6 @@ namespace Vidos.Data.Migrations
                     b.HasOne("Vidos.Data.Models.Brand", "Brand")
                         .WithMany("Products")
                         .HasForeignKey("BrandId");
-
-                    b.HasOne("Vidos.Data.Models.PaymentType")
-                        .WithMany("Products")
-                        .HasForeignKey("PaymentTypeId");
                 });
 
             modelBuilder.Entity("Vidos.Data.Models.Cart", b =>
@@ -383,7 +375,7 @@ namespace Vidos.Data.Migrations
                         .HasForeignKey("CustomerId");
 
                     b.HasOne("Vidos.Data.Models.PaymentType", "Type")
-                        .WithMany()
+                        .WithMany("Payments")
                         .HasForeignKey("PaymentTypeId");
                 });
 #pragma warning restore 612, 618

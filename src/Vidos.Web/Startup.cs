@@ -85,7 +85,6 @@ namespace Vidos.Web
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
 
-                //TODO Potentially use a web crawler to take sample data
                 seeder.Seed();
             }
             else

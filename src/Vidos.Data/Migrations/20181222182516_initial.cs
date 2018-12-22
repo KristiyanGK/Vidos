@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Vidos.Data.Migrations
 {
-    public partial class BrandMigration : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -194,8 +194,7 @@ namespace Vidos.Data.Migrations
                     Cooling = table.Column<double>(nullable: false),
                     Heating = table.Column<double>(nullable: false),
                     HeatingConsumption = table.Column<double>(nullable: false),
-                    CoolingConsumption = table.Column<double>(nullable: false),
-                    PaymentTypeId = table.Column<string>(nullable: true)
+                    CoolingConsumption = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -204,12 +203,6 @@ namespace Vidos.Data.Migrations
                         name: "FK_AirConditioners_Brands_BrandId",
                         column: x => x.BrandId,
                         principalTable: "Brands",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AirConditioners_PaymentTypes_PaymentTypeId",
-                        column: x => x.PaymentTypeId,
-                        principalTable: "PaymentTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -289,11 +282,6 @@ namespace Vidos.Data.Migrations
                 name: "IX_AirConditioners_BrandId",
                 table: "AirConditioners",
                 column: "BrandId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AirConditioners_PaymentTypeId",
-                table: "AirConditioners",
-                column: "PaymentTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
