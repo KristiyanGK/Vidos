@@ -2,10 +2,10 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Vidos.Common;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
 using Vidos.Services.Models.ViewModels;
+using Vidos.Web.Configurations;
 
 namespace Vidos.Web.Areas.Administration.Controllers
 {

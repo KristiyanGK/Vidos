@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using Vidos.Data;
 using Vidos.Data.Models;
 
@@ -17,7 +15,7 @@ namespace Vidos.Web.Utilities
 
         public void Seed()
         {
-            if (_context.AirConditioners.Count() != 0) 
+            if (_context.AirConditioners.Count() != 0)
             {
                 return;
             }
@@ -43,11 +41,10 @@ namespace Vidos.Web.Utilities
                 "germany"
             };
 
-            //TODO Fix Paths
             string[] imagePaths =
             {
-                "C:\\Users\\KrisGK\\Desktop\\Vidos\\src\\Vidos.Web\\wwwroot\\images/ac1.jpg",
-                "C:\\Users\\KrisGK\\Desktop\\Vidos\\src\\Vidos.Web\\wwwroot\\images/ac2.jpg"
+                "images/ac1.jpg",
+                "images/ac2.jpg"
             };
 
             for (int i = 0; i < 40; i++)

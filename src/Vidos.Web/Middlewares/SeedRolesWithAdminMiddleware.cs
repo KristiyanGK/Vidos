@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
-using Vidos.Common;
 using Vidos.Data.Models;
+using Vidos.Web.Configurations;
 
 namespace Vidos.Web.Middlewares
 {

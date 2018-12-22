@@ -35,8 +35,7 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    <!--TODO Fix this-->
-                    <img src="~/@item.ImagePath.Substring(item.ImagePath.IndexOf("image"))" />
+                    <img src="~/@item.ImagePath" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
