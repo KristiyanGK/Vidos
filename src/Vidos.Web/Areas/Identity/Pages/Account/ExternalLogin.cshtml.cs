@@ -123,7 +123,7 @@ namespace Vidos.Web.Areas.Identity.Pages.Account
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        _logger.LogInformation("UserRole created an account using {Name} provider.", info.LoginProvider);
+                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
                         return LocalRedirect(returnUrl);
                     }
                 }

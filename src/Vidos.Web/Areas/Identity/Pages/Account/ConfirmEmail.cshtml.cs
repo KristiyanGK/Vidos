@@ -24,7 +24,7 @@ namespace Vidos.Web.Areas.Identity.Pages.Account
         {
             if (userId == null || code == null)
             {
-                return RedirectToPage("/All");
+                return RedirectToPage("/Index");
             }
 
             var user = await _userManager.FindByIdAsync(userId);

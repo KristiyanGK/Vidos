@@ -77,7 +77,7 @@ namespace Vidos.Web.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("UserRole logged in.");
+                    _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -86,7 +86,7 @@ namespace Vidos.Web.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("UserRole account locked out.");
+                    _logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
                 else
