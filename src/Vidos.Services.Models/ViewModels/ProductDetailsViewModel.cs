@@ -5,6 +5,8 @@ namespace Vidos.Services.Models.ViewModels
 {
     public class ProductDetailsViewModel : IMapFrom<AirConditioner>
     {
+        public string Name { get; set; }
+
         public string ImagePath { get; set; }
 
         public string Description { get; set; }

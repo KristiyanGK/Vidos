@@ -80,10 +80,17 @@ namespace Vidos.Web
             IHostingEnvironment env,
             Seeder seeder)
         {
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.UseRolesWithAdminSeeder();
 
                 seeder.Seed();
             }
@@ -91,16 +98,7 @@ namespace Vidos.Web
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
-
-            app.UseAuthentication();
-
-            //TODO Remove when in production
-            app.UseRolesWithAdminSeeder();
+            }            
 
             app.UseMvc(routes =>
             {

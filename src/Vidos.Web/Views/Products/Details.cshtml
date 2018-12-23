@@ -4,24 +4,21 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Model.</h2>
 
 <div>
-    <h4>ProductDetailsViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ImagePath)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="~/@Model.ImagePath" />
+        </div>
+        <div class="col-sm-4">
+             <label></label>
+            <p class="text-xl-center">
+                @Model.Description
+            </p>
+        </div>
+    </div>
+    <dl>
         <dt>
             @Html.DisplayNameFor(model => model.BrandName)
         </dt>
@@ -67,6 +64,5 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="All">Back to List</a>
 </div>
