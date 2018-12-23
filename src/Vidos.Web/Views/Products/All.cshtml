@@ -49,7 +49,7 @@
     </tbody>
 </table>
 
-@Html.PagedListPager((IPagedList)Model, page => Url.Action("All", new { page }), 
+@Html.PagedListPager((IPagedList)Model, pageNumber => Url.Action("All", new { pageNumber }), 
 new PagedListRenderOptions {
     LiElementClasses = new string[] { "page-item" },
     PageClasses = new string[] { "page-link" }

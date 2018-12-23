@@ -15,12 +15,12 @@ namespace Vidos.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult All(int? page)
+        public IActionResult All(int? pageNumber)
         {
             var products = this._productsService.GetAll();
 
-            var pageNumber = page ?? 1;
-            var onePageOfProducts = products.ToPagedList(pageNumber, 5);
+            var page = pageNumber ?? 1;
+            var onePageOfProducts = products.ToPagedList(page, 5);
 
             return View(onePageOfProducts);
         }
