@@ -4,65 +4,106 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>@Model.</h2>
-
-<div>
-    <div class="row">
-        <div class="col-sm-4">
-            <img src="~/@Model.ImagePath" />
-        </div>
-        <div class="col-sm-4">
-             <label></label>
-            <p class="text-xl-center">
-                @Model.Description
-            </p>
-        </div>
-    </div>
-    <dl>
-        <dt>
-            @Html.DisplayNameFor(model => model.BrandName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.BrandName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Origin)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Origin)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Cooling)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Cooling)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Heating)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Heating)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.HeatingConsumption)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.HeatingConsumption)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CoolingConsumption)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CoolingConsumption)
-        </dd>
-    </dl>
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-center">Продуктови детайли</h1>
+			</div>
+		</div>
+	</div>
 </div>
-<div>
-    <a asp-action="All">Back to List</a>
+        
+<div class="section">
+    <div class="container">
+	    <div class="row">
+	    	<div class="col-sm-6">
+	    		<div class="product-image-large">
+	    			<img src="~/@Model.ImagePath" alt="Item Name">
+	    		</div>
+	    	</div>
+
+            <div class="col-sm-6">
+                <table class="table">
+                    <tr>
+                        <td><b>Име</b></td>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <td><b>Цена</b></td>
+                        <td>
+                            @Model.Price &#1083;&#1074;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Количество</b></td>
+                        <td>
+                            <input type="text" class="form-control" value="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+                        
+            <div class="col-sm-12" id="parent">
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#description">
+                            Описание
+                        </a>
+                    </div>
+                    <div id="description" class="collapse show" data-parent="#parent">
+                        <div class="card-body">
+                            @Model.Description
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#specification">
+                                Спецификации
+                            </a>
+                        </div>
+                        <div id="specification" class="collapse show" data-parent="#parent">
+                            <div class="card-body">
+                                <table class="table table-striped">
+                                    <tr>
+                                        <td class="col-sm-4">Марка</td>
+                                        <td class="col-sm-8">@Model.BrandName</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-sm-4">Произход</td>
+                                        <td class="col-sm-8">@Model.Origin</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-sm-4">Номинална консумация (охлаждане)</td>
+                                        <td class="col-sm-8">@Model.CoolingConsumption kW</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-sm-4">Номинална консумация (отопление)</td>
+                                        <td class="col-sm-8">@Model.HeatingConsumption kW</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-sm-4">Капацитет охлаждане</td>
+                                        <td class="col-sm-8">@Model.Cooling kW</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-sm-4">Капацитет на затопляне</td>
+                                        <td class="col-sm-8">@Model.Heating kW</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+	    </div>
+	</div>
 </div>

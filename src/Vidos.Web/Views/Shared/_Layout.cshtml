@@ -18,75 +18,76 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm bg-primary navbar-dark border-bottom box-shadow">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Vidos</a>
-            
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <header>
+        <nav class="px-md-5 navbar navbar-expand-sm bg-primary navbar-dark border-bottom box-shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Vidos</a>
 
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" id="collapsibleNavbar">
-                <partial name="_LoginPartial"/>
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Продукти
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" asp-controller="Products" asp-action="All">Всички климатици</a>
-                        </div>
-                    </li>
-                </ul>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" id="collapsibleNavbar">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Продукти
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-controller="Products" asp-action="All">Всички климатици</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
 
-<div class="container">
-    <partial name="_CookieConsentPartial" />
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-    <button class="scrollToTopBtn" onclick="topFunction()" id="toTopBtn" title="Go to top">Top</button>
-</div>
-
-<footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2018 - Vidos
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+        <button class="scrollToTopBtn btn-sm" onclick="topFunction()" id="toTopBtn" title="Go to top">Top</button>
     </div>
-</footer>
 
-<environment include="Development">
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-</environment>
-<environment exclude="Development">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-            asp-fallback-test="window.jQuery"
-            crossorigin="anonymous"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"
-            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-            crossorigin="anonymous"
-            integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
-    </script>
-</environment>
-<script src="~/js/site.js" asp-append-version="true"></script>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2018 - Vidos
+        </div>
+    </footer>
 
-@RenderSection("Scripts", required: false)
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
+        </script>
+    </environment>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
