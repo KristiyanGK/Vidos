@@ -1,10 +1,13 @@
-﻿using Vidos.Data.Models;
+﻿using AutoMapper;
+using Vidos.Data.Models;
 using Vidos.Services.Mapping;
 
 namespace Vidos.Services.Models.ViewModels
 {
-    public class ProductDetailsViewModel : IMapFrom<AirConditioner>
+    public class ProductDetailsViewModel : IHaveCustomMappings
     {
+        public string Id { get; set; }
+
         public string Name { get; set; }
 
         public string ImagePath { get; set; }
@@ -24,5 +27,14 @@ namespace Vidos.Services.Models.ViewModels
         public double HeatingConsumption { get; set; } // kW
 
         public double CoolingConsumption { get; set; } // kW
+
+        public string ReturnUrl { get; set; }
+
+        public void CreateMappings(IMapperConfigurationExpression configuration)
+        {
+            configuration.CreateMap<AirConditioner, ProductDetailsViewModel>()
+                .ForMember(dest => dest.BrandName,
+                    opt => opt.MapFrom(src => src.Brand.Name));
+        }
     }
 }

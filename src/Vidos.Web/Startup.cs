@@ -41,7 +41,8 @@ namespace Vidos.Web
             AutoMapperConfig.RegisterMappings(
                 typeof(AllProductsViewModel).Assembly,
                 typeof(ProductDetailsViewModel).Assembly,
-                typeof(ProductCreationViewModel).Assembly
+                typeof(ProductCreationViewModel).Assembly,
+                typeof(OrderViewModel).Assembly
                 );
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -64,10 +65,16 @@ namespace Vidos.Web
                 .AddDefaultUI();
 
             services.AddAutoMapper();
+            services.AddMemoryCache();
             services.AddSession();
-            
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddScoped(SessionCartService.GetCart);
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddScoped<IProductsService, ProductsService>();
+            services.AddScoped<IOrderService, OrderService>();
+
             services.AddTransient<Seeder>();
 
             services

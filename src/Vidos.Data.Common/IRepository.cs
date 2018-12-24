@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Vidos.Data.Common
@@ -15,5 +16,7 @@ namespace Vidos.Data.Common
         Task<int> SaveChangesAsync();
 
         TEntity FindById(string id);
+
+        void AttachRange(IEnumerable<object> entities);
     }
 }

@@ -26,9 +26,11 @@ namespace Vidos.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(string id)
+        public IActionResult Details(string id, string returnUrl)
         {
-            var product = this._productsService.GetProductById(id);
+            var product = this._productsService.GetProductDetailsViewModelById(id);
+
+            product.ReturnUrl = returnUrl;
 
             return View(product);
         }

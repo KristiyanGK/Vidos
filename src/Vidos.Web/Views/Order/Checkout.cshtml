@@ -1,0 +1,34 @@
+﻿@model Vidos.Services.Models.ViewModels.OrderViewModel
+
+<h2>Поръчай сега!</h2>
+<p>Моля въведете вашите детайли</p>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Checkout" method="post">
+    <h3>Адрес:</h3>
+    <div class="form-group">
+        <label>Ред 1:</label><input asp-for="Line1" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Ред 2:</label><input asp-for="Line2" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Ред 3:</label><input asp-for="Line3" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Град:</label><input asp-for="City" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Област:</label><input asp-for="State" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Зип код:</label><input asp-for="Zip" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Държава:</label><input asp-for="Country" class="form-control" />
+    </div>
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Поръчай" />
+    </div>
+</form>

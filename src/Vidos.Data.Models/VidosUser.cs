@@ -7,15 +7,13 @@ namespace Vidos.Data.Models
     {
         public VidosUser()
         {
-            this.PaymentHistory = new HashSet<Payment>();
+            this.OrderHistory = new HashSet<Order>();
         }
-
-        public string Address { get; set; }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
-        public ICollection<Payment> PaymentHistory { get; set; }
+        public ICollection<Order> OrderHistory { get; set; }
     }
 }

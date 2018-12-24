@@ -29,7 +29,16 @@ namespace Vidos.Services.DataServices
             return list;
         }
 
-        public ProductDetailsViewModel GetProductById(string id)
+        public ProductDetailsViewModel GetProductDetailsViewModelById(string id)
+        {
+            var product = this.GetProductById(id);
+            
+            var productModel = Mapper.Map<ProductDetailsViewModel>(product);
+
+            return productModel;
+        }
+
+        public AirConditioner GetProductById(string id)
         {
             var product = this._repo.FindById(id);
 
@@ -37,10 +46,8 @@ namespace Vidos.Services.DataServices
             {
                 throw new ArgumentNullException(nameof(product));
             }
-            
-            var productModel = Mapper.Map<ProductDetailsViewModel>(product);
 
-            return productModel;
+            return product;
         }
     }
 }

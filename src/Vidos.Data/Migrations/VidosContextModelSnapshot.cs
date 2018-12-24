@@ -15,7 +15,7 @@ namespace Vidos.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -173,20 +173,6 @@ namespace Vidos.Data.Migrations
                     b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("Vidos.Data.Models.Cart", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("PaymentId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PaymentId");
-
-                    b.ToTable("Carts");
-                });
-
             modelBuilder.Entity("Vidos.Data.Models.CartItem", b =>
                 {
                     b.Property<string>("Id")
@@ -194,51 +180,45 @@ namespace Vidos.Data.Migrations
 
                     b.Property<string>("AirConditionerId");
 
+                    b.Property<string>("OrderId");
+
                     b.Property<int>("Quantity");
-
-                    b.Property<string>("ShoppingCartId");
-
-                    b.Property<decimal>("TotalCost");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AirConditionerId");
 
-                    b.HasIndex("ShoppingCartId");
+                    b.HasIndex("OrderId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("CartItem");
                 });
 
-            modelBuilder.Entity("Vidos.Data.Models.Payment", b =>
+            modelBuilder.Entity("Vidos.Data.Models.Order", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<decimal>("Amount");
+                    b.Property<string>("City");
 
-                    b.Property<string>("CustomerId");
+                    b.Property<string>("ClientId");
 
-                    b.Property<string>("PaymentTypeId");
+                    b.Property<string>("Country");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Line1");
 
-                    b.HasIndex("CustomerId");
+                    b.Property<string>("Line2");
 
-                    b.HasIndex("PaymentTypeId");
+                    b.Property<string>("Line3");
 
-                    b.ToTable("Payments");
-                });
+                    b.Property<string>("State");
 
-            modelBuilder.Entity("Vidos.Data.Models.PaymentType", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
+                    b.Property<string>("Zip");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PaymentTypes");
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Vidos.Data.Models.VidosUser", b =>
@@ -247,8 +227,6 @@ namespace Vidos.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("Address");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -350,33 +328,22 @@ namespace Vidos.Data.Migrations
                         .HasForeignKey("BrandId");
                 });
 
-            modelBuilder.Entity("Vidos.Data.Models.Cart", b =>
-                {
-                    b.HasOne("Vidos.Data.Models.Payment", "Payment")
-                        .WithMany()
-                        .HasForeignKey("PaymentId");
-                });
-
             modelBuilder.Entity("Vidos.Data.Models.CartItem", b =>
                 {
                     b.HasOne("Vidos.Data.Models.AirConditioner", "AirConditioner")
-                        .WithMany("ShoppingCarItems")
+                        .WithMany()
                         .HasForeignKey("AirConditionerId");
 
-                    b.HasOne("Vidos.Data.Models.Cart", "ShoppingCart")
-                        .WithMany("CartItems")
-                        .HasForeignKey("ShoppingCartId");
+                    b.HasOne("Vidos.Data.Models.Order")
+                        .WithMany("Items")
+                        .HasForeignKey("OrderId");
                 });
 
-            modelBuilder.Entity("Vidos.Data.Models.Payment", b =>
+            modelBuilder.Entity("Vidos.Data.Models.Order", b =>
                 {
-                    b.HasOne("Vidos.Data.Models.VidosUser", "Customer")
-                        .WithMany("PaymentHistory")
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("Vidos.Data.Models.PaymentType", "Type")
-                        .WithMany("Payments")
-                        .HasForeignKey("PaymentTypeId");
+                    b.HasOne("Vidos.Data.Models.VidosUser", "Client")
+                        .WithMany("OrderHistory")
+                        .HasForeignKey("ClientId");
                 });
 #pragma warning restore 612, 618
         }

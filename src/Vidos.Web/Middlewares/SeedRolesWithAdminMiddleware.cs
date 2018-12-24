@@ -38,7 +38,6 @@ namespace Vidos.Web.Middlewares
                     Email = Constants.AdministratorEmail,
                     FirstName = Constants.AdministratorName,
                     LastName = Constants.AdministratorName,
-                    Address = Constants.AdministratorName
                 };
 
                 await userManager.CreateAsync(user, Constants.AdministratorPassword);

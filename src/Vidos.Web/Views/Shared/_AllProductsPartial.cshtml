@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Vidos.Services.Models.ViewModels.AllProductsViewModel>
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model IEnumerable<Vidos.Services.Models.ViewModels.AllProductsViewModel>
 
 <div class="row">
     @foreach (var product in Model)
@@ -6,7 +7,7 @@
         <div class="col-sm-4">
             <div class="shop-item">
                 <div class="image">
-                    <a href="@Url.Action("Details", "Products", new {product.Id})">
+                    <a href="@Url.Action("Details", "Products", new {id = product.Id, returnUrl = ViewContext.HttpContext.Request.GetEncodedPathAndQuery()})">
                         <img src="~/@product.ImagePath" alt="@product.Name"/>
                     </a>
                 </div>

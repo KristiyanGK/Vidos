@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Vidos.Data.Models
 {
@@ -8,7 +7,6 @@ namespace Vidos.Data.Models
         public AirConditioner()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.ShoppingCarItems = new HashSet<CartItem>();
         }
 
         public string Id { get; set; }
@@ -34,7 +32,5 @@ namespace Vidos.Data.Models
         public double HeatingConsumption { get; set; } // kW
 
         public double CoolingConsumption { get; set; } // kW
-
-        public ICollection<CartItem> ShoppingCarItems { get; set; }
     }
 }

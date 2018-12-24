@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Vidos.Data.Common;
@@ -41,6 +43,11 @@ namespace Vidos.Data
         public TEntity FindById(string id)
         {
             return this._dbSet.Find(id);
+        }
+
+        public void AttachRange(IEnumerable<object> entities)
+        {
+            this._context.AttachRange(entities);
         }
 
         public void Dispose()
