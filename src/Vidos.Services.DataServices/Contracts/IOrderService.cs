@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Vidos.Data.Models;
 
 namespace Vidos.Services.DataServices.Contracts
@@ -7,6 +8,6 @@ namespace Vidos.Services.DataServices.Contracts
     {
         IQueryable<Order> Orders { get; }
 
-        void SaveOrder(Order order);
+        Task SaveOrderAsync(Order order);
     }
 }

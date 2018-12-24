@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
@@ -20,13 +21,13 @@ namespace Vidos.Services.DataServices
                 .Include(o => o.Items)
                 .ThenInclude(l => l.AirConditioner);
 
-        public void SaveOrder(Order order)
+        public async Task SaveOrderAsync(Order order)
         {
             this._ordeRepository.AttachRange(order.Items.Select(l => l.AirConditioner));
 
-            this._ordeRepository.AddAsync(order).GetAwaiter().GetResult();
+            await this._ordeRepository.AddAsync(order);
 
-            this._ordeRepository.SaveChangesAsync().GetAwaiter().GetResult();
+            await this._ordeRepository.SaveChangesAsync();
         }
     }
 }

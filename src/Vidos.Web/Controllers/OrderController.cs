@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,7 @@ namespace Vidos.Web.Controllers
         public IActionResult Checkout() => View();
 
         [HttpPost]
-        public IActionResult Checkout(OrderViewModel orderModel)
+        public async Task<IActionResult> Checkout(OrderViewModel orderModel)
         {
             if (!this._cartService.Items.Any())
             {
@@ -41,7 +42,7 @@ namespace Vidos.Web.Controllers
             if (ModelState.IsValid)
             {
                 order.Items = this._cartService.Items.ToArray();
-                this._orderService.SaveOrder(order);
+                await this._orderService.SaveOrderAsync(order);
                 return RedirectToAction(nameof(Completed));
             }
             else
