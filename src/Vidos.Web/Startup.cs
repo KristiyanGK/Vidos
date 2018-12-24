@@ -64,10 +64,10 @@ namespace Vidos.Web
                 .AddDefaultUI();
 
             services.AddAutoMapper();
+            services.AddSession();
             
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddScoped<IProductsService, ProductsService>();
-
             services.AddTransient<Seeder>();
 
             services
@@ -83,7 +83,7 @@ namespace Vidos.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseAuthentication();
 
             if (env.IsDevelopment())

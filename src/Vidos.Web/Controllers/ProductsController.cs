@@ -20,7 +20,7 @@ namespace Vidos.Web.Controllers
             var products = this._productsService.GetAll();
 
             var page = pageNumber ?? 1;
-            var onePageOfProducts = products.ToPagedList(page, 5);
+            var onePageOfProducts = products.ToPagedList(page, 9);
 
             return View(onePageOfProducts);
         }

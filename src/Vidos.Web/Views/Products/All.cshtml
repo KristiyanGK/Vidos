@@ -5,49 +5,22 @@
 
 @{
     ViewData["Title"] = "All";
+    int taken = 0;
+    int itemsToTake = 3;
+    int repeatNumber = (int) Math.Ceiling(Model.Count() / (double)itemsToTake);
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagePath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
+<div class="section">
+    <div class="container">
+        @for (int i = 0; i < repeatNumber; i++)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    <img src="~/@item.ImagePath" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                </td>
-            </tr>
+            <partial 
+                name="/Views/Shared/_AllProductsPartial.cshtml" 
+                model="Model.Skip(taken).Take(itemsToTake);"/>
+            taken += itemsToTake;
         }
-    </tbody>
-</table>
+    </div>
+</div>
 
 @Html.PagedListPager((IPagedList)Model, pageNumber => Url.Action("All", new { pageNumber }), 
 new PagedListRenderOptions {
