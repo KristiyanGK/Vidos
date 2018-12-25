@@ -210,6 +210,8 @@ namespace Vidos.Data.Migrations
 
                     b.Property<string>("Line3");
 
+                    b.Property<DateTime>("PurchaseDate");
+
                     b.Property<string>("State");
 
                     b.Property<string>("Zip");

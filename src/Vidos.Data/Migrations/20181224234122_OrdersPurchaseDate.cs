@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Vidos.Data.Migrations
 {
-    public partial class orders : Migration
+    public partial class OrdersPurchaseDate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -179,7 +179,8 @@ namespace Vidos.Data.Migrations
                     City = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
                     Zip = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: true)
+                    Country = table.Column<string>(nullable: true),
+                    PurchaseDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

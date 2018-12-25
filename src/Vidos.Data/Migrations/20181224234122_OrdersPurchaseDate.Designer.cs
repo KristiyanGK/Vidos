@@ -10,8 +10,8 @@ using Vidos.Data;
 namespace Vidos.Data.Migrations
 {
     [DbContext(typeof(VidosContext))]
-    [Migration("20181224213939_orders")]
-    partial class orders
+    [Migration("20181224234122_OrdersPurchaseDate")]
+    partial class OrdersPurchaseDate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -211,6 +211,8 @@ namespace Vidos.Data.Migrations
                     b.Property<string>("Line2");
 
                     b.Property<string>("Line3");
+
+                    b.Property<DateTime>("PurchaseDate");
 
                     b.Property<string>("State");
 

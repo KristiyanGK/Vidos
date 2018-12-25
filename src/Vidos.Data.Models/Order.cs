@@ -8,6 +8,7 @@ namespace Vidos.Data.Models
         public Order()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.PurchaseDate = DateTime.UtcNow;
             this.Items = new HashSet<CartItem>();
         }
 
@@ -30,6 +31,8 @@ namespace Vidos.Data.Models
         public string Zip { get; set; }
 
         public string Country { get; set; }
+
+        public DateTime PurchaseDate { get; set; }
 
         public ICollection<CartItem> Items { get; set; }
     }
