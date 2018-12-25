@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Constants = Vidos.Web.Common.Constants
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -34,6 +35,12 @@
 
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" id="collapsibleNavbar">
                     <partial name="_LoginPartial" />
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav">
+                            @await Component.InvokeAsync("CartSummary")
+                        </ul>
+                    }
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -45,13 +52,28 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                 Продукти
                             </a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-area="Shopping" asp-controller="Products" asp-action="All">Всички климатици</a>
                             </div>
                         </li>
+                        @if (this.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                    Поръчки
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item">Моите поръчки</a>
+                                    @if (this.User.IsInRole(Constants.AdministratorRole))
+                                    {
+                                        <a class="dropdown-item" asp-area="Administration" asp-controller="Order" asp-action="All">Всички поръчки</a>
+                                    }
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

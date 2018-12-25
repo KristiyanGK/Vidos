@@ -43,18 +43,28 @@ namespace Vidos.Web.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = DisplayNames.Email)]
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(Constants.MaxFirstNameLength, ErrorMessage = ErrorMessages.StringInvalidLength, MinimumLength = Constants.MinFirstNameLength)]
+            [Display(Name = DisplayNames.FirstName)]
+            public string FirstName { get; set; }
+
+            [Required]
+            [StringLength(Constants.MaxLastNameLength, ErrorMessage = ErrorMessages.StringInvalidLength, MinimumLength = Constants.MinLastNameLength)]
+            [Display(Name = DisplayNames.LastName)]
+            public string LastName { get; set; }
+
+            [Required]
+            [StringLength(Constants.MaxPasswordLength, ErrorMessage = ErrorMessages.StringInvalidLength, MinimumLength = Constants.MinPasswordLength)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = DisplayNames.Password)]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = DisplayNames.ConfirmPassword)]
+            [Compare(nameof(Password), ErrorMessage = ErrorMessages.PasswordMissMatch)]
             public string ConfirmPassword { get; set; }
         }
 
@@ -66,9 +76,16 @@ namespace Vidos.Web.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
+
             if (ModelState.IsValid)
             {
-                var user = new VidosUser { UserName = Input.Email, Email = Input.Email };
+                var user = new VidosUser
+                    {
+                        UserName = Input.Email,
+                        Email = Input.Email,
+                        FirstName = Input.FirstName,
+                        LastName = Input.LastName
+                    };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 await this._userManager.AddToRoleAsync(user, Constants.UserRole);
                 if (result.Succeeded)

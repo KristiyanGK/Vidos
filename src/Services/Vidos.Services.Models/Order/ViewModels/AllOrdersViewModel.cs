@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using AutoMapper;
 using Vidos.Services.Mapping;
 
 namespace Vidos.Services.Models.Order.ViewModels
 {
-    public class AllOrdersViewModel : IMapFrom<Data.Models.Order>
+    public class AllOrdersViewModel : IHaveCustomMappings
     {
         public string ClientName { get; set; }
 
@@ -28,5 +29,12 @@ namespace Vidos.Services.Models.Order.ViewModels
         public string Country { get; set; }
 
         public bool IsShipped { get; set; }
+
+        public void CreateMappings(IMapperConfigurationExpression configuration)
+        {
+            configuration.CreateMap<Data.Models.Order, AllOrdersViewModel>()
+                .ForMember(dest => dest.ClientName,
+                    opt => opt.MapFrom(src => src.Client.FirstName + " " + src.Client.LastName));
+        }
     }
 }

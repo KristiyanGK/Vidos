@@ -1,4 +1,6 @@
-﻿namespace Vidos.Web.Common
+﻿using System.ComponentModel;
+
+namespace Vidos.Web.Common
 {
     public static class Constants
     {
@@ -11,5 +13,14 @@
         public const string AdministratorRole = "Admin";
 
         public const string UserRole = "User";
+
+        public const int MinFirstNameLength = 3;
+        public const int MaxFirstNameLength = 100;
+
+        public const int MaxLastNameLength = 100;
+        public const int MinLastNameLength = 3;
+
+        public const int MaxPasswordLength = 100;
+        public const int MinPasswordLength = 3;
     }
 }

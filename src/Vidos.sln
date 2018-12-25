@@ -5,25 +5,29 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{418140DC-A4E2-4ECF-84CD-65472172B00C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Web", "Web\Vidos.Web\Vidos.Web.csproj", "{5F8B3194-2984-4C37-A50A-945B77115EFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vidos.Web", "Web\Vidos.Web\Vidos.Web.csproj", "{5F8B3194-2984-4C37-A50A-945B77115EFD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{39A5BDA5-9A17-4B92-8695-7F321F7925E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Data.Models", "Data\Vidos.Data.Models\Vidos.Data.Models.csproj", "{73210500-8C82-49F3-A1CB-47C36E6671F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vidos.Data.Models", "Data\Vidos.Data.Models\Vidos.Data.Models.csproj", "{73210500-8C82-49F3-A1CB-47C36E6671F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Data.Common", "Data\Vidos.Data.Common\Vidos.Data.Common.csproj", "{3F5773F2-2D76-4519-B6DA-C02AC291D081}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vidos.Data.Common", "Data\Vidos.Data.Common\Vidos.Data.Common.csproj", "{3F5773F2-2D76-4519-B6DA-C02AC291D081}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Data", "Data\Vidos.Data\Vidos.Data.csproj", "{B8E65DCD-EC11-4D1C-AA6D-EA565EDC4D48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vidos.Data", "Data\Vidos.Data\Vidos.Data.csproj", "{B8E65DCD-EC11-4D1C-AA6D-EA565EDC4D48}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{FFC997AD-10E3-4103-9BAD-4227A3A61C2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Services.Mapping", "Services\Vidos.Services.Mapping\Vidos.Services.Mapping.csproj", "{A6AA0DE2-629F-4F57-B86F-ABD875123515}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vidos.Services.Mapping", "Services\Vidos.Services.Mapping\Vidos.Services.Mapping.csproj", "{A6AA0DE2-629F-4F57-B86F-ABD875123515}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Services.DataServices", "Services\Vidos.Services.DataServices\Vidos.Services.DataServices.csproj", "{E38AC248-2F04-48B4-8BB9-09F4149FC9D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vidos.Services.DataServices", "Services\Vidos.Services.DataServices\Vidos.Services.DataServices.csproj", "{E38AC248-2F04-48B4-8BB9-09F4149FC9D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Services.Models", "Services\Vidos.Services.Models\Vidos.Services.Models.csproj", "{C4CEB71D-B781-4AE6-B298-D6A0C0C19855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vidos.Services.Models", "Services\Vidos.Services.Models\Vidos.Services.Models.csproj", "{C4CEB71D-B781-4AE6-B298-D6A0C0C19855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Web.Common", "Web\Vidos.Web.Common\Vidos.Web.Common.csproj", "{8EDC748B-8FD3-4C30-AE62-F765942B1AB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vidos.Web.Common", "Web\Vidos.Web.Common\Vidos.Web.Common.csproj", "{8EDC748B-8FD3-4C30-AE62-F765942B1AB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{56876F6E-87E1-4502-87B0-BA68489B4081}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidos.Services.Tests", "Tests\Vidos.Services.Tests\Vidos.Services.Tests.csproj", "{D488E3EF-389C-4446-9FF1-507EFC1EAE94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,10 @@ Global
 		{8EDC748B-8FD3-4C30-AE62-F765942B1AB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EDC748B-8FD3-4C30-AE62-F765942B1AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EDC748B-8FD3-4C30-AE62-F765942B1AB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D488E3EF-389C-4446-9FF1-507EFC1EAE94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D488E3EF-389C-4446-9FF1-507EFC1EAE94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D488E3EF-389C-4446-9FF1-507EFC1EAE94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D488E3EF-389C-4446-9FF1-507EFC1EAE94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +84,7 @@ Global
 		{E38AC248-2F04-48B4-8BB9-09F4149FC9D8} = {FFC997AD-10E3-4103-9BAD-4227A3A61C2B}
 		{C4CEB71D-B781-4AE6-B298-D6A0C0C19855} = {FFC997AD-10E3-4103-9BAD-4227A3A61C2B}
 		{8EDC748B-8FD3-4C30-AE62-F765942B1AB3} = {418140DC-A4E2-4ECF-84CD-65472172B00C}
+		{D488E3EF-389C-4446-9FF1-507EFC1EAE94} = {56876F6E-87E1-4502-87B0-BA68489B4081}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {173082FF-5D3A-4F4D-80DB-6D74BA924479}

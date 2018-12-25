@@ -6,7 +6,7 @@ using Vidos.Services.Mapping;
 using Vidos.Services.Models.Order.ViewModels;
 
 namespace Vidos.Web.Areas.Administration.Controllers
-{
+{   
     public class OrderController : BaseAdminController
     {
         private readonly IOrderService _orderService;
