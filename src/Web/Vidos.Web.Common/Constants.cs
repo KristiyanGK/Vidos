@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Vidos.Web.Common
+﻿namespace Vidos.Web.Common
 {
     public static class Constants
     {
