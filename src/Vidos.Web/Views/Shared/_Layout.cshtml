@@ -52,7 +52,7 @@
                                 Продукти
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-controller="Products" asp-action="All">Всички климатици</a>
+                                <a class="dropdown-item" asp-area="Shopping" asp-controller="Products" asp-action="All">Всички климатици</a>
                             </div>
                         </li>
                     </ul>
@@ -96,6 +96,8 @@
 
     <script src="~/js/site.js" asp-append-version="true"></script>
     
-    <partial name="_ValidationScriptsPartial"/>
+<partial name="_ValidationScriptsPartial"/>
+
+@RenderSection("Scripts", false)
 </body>
 </html>
