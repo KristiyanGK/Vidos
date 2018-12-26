@@ -11,5 +11,7 @@ namespace Vidos.Services.DataServices.Contracts
         IQueryable<Order> All();
 
         Task SaveOrderAsync(Order order);
+
+        Order GetAllOrderInfoById(string id);
     }
 }

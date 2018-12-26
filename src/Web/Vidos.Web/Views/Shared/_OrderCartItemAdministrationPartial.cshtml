@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model IEnumerable<Vidos.Services.Models.CartItem.ViewModels.CartItemDetailsViewModel>
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>
+            Име
+        </th>
+        <th>
+            Бройка
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in @Model)
+    {
+        <tr>
+            <td>
+                <a asp-area="Shopping" asp-controller="Products" asp-action="Details"
+                   asp-route-id="@item.ProductId"
+                   asp-route-returnUrl="@ViewContext.HttpContext.Request.GetEncodedPathAndQuery()">
+                    @item.ProductName
+                </a>
+            </td>
+            <td>
+                <div>
+                    @item.Quantity
+                </div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table> 

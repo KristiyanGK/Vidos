@@ -11,8 +11,8 @@ using Vidos.Web.Controllers;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
 {
-    [Area("shopping")]
-    [Authorize(Roles = "User")]
+    [Area("Shopping")]
+    [Authorize]
     public class OrderController : BaseController
     {
         private readonly IOrderService _orderService;

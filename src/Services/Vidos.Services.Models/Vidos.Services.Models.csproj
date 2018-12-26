@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Vidos.Data.Models\Vidos.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\Vidos.Web.Common\Vidos.Web.Common.csproj" />
     <ProjectReference Include="..\Vidos.Services.Mapping\Vidos.Services.Mapping.csproj" />
   </ItemGroup>
 

@@ -11,7 +11,7 @@
         </small>
     }
     <a class="btn btn-sm btn-secondary"
-       asp-controller="Cart" asp-action="Index"
+       asp-area="Shopping" asp-controller="Cart" asp-action="Index"
        asp-route-returnurl="@ViewContext.HttpContext.Request.GetEncodedPathAndQuery()">
         <i class="fa fa-shopping-cart"></i>
     </a>

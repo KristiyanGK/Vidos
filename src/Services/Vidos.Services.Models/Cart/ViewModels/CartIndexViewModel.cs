@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Vidos.Data.Models;
+using Vidos.Services.Models.CartItem.ViewModels;
 
 namespace Vidos.Services.Models.Cart.ViewModels
 {
     public class CartIndexViewModel
     {
-        public IEnumerable<CartItem> Items { get; set; }
+        public IEnumerable<CartItemIndexViewModel> Items { get; set; }
 
         public decimal TotalValue { get; set; }
 

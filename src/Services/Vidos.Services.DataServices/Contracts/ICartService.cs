@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Vidos.Data.Models;
 
 namespace Vidos.Services.DataServices.Contracts

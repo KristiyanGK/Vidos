@@ -15,14 +15,14 @@
         {
             <tr>
                 <td class="text-center">@line.Quantity</td>
-                <td class="text-left">@line.AirConditioner.Name</td>
-                <td class="text-right">@line.AirConditioner.Price&#1083;&#1074;</td>
+                <td class="text-left">@line.ProductName</td>
+                <td class="text-right">@line.ProductPrice&#1083;&#1074;</td>
                 <td class="text-right">
-                    @((line.Quantity * line.AirConditioner.Price))&#1083;&#1074;
+                    @((line.Quantity * line.ProductPrice))&#1083;&#1074;
                 </td>
                 <td>
                     <form asp-action="RemoveFromCart" method="post"
-                          asp-route-productId="@line.AirConditioner.Id"
+                          asp-route-productId="@line.ProductId"
                           asp-route-returnUrl="@Model.ReturnUrl">
                         <button type="submit" class="btn btn-sm btn-danger">
                             Премахни

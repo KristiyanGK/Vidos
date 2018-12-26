@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
@@ -15,9 +16,23 @@ namespace Vidos.Services.DataServices
             this._ordeRepository = ordeRepository;
         }
 
+        //Returns the order information with included Client and Items data
+        public Order GetAllOrderInfoById(string id)
+        {
+            var order =
+                this.All()
+                    .Include(o => o.Client)
+                    .Include(o => o.Items)
+                    .ThenInclude(i => i.AirConditioner)
+                    .FirstOrDefault(o => o.Id == id);
+
+            return order;
+        }
+
+        //Returns only the basic order information
         public Order GetOrderById(string id)
         {
-            Order order = this._ordeRepository.FindById(id);
+            var order = this._ordeRepository.FindById(id);
 
             return order;
         }

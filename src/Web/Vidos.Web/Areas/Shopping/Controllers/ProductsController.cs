@@ -5,7 +5,7 @@ using X.PagedList;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
 {
-    [Area("shopping")]
+    [Area("Shopping")]
     public class ProductsController : BaseController
     {
         private readonly IProductsService _productsService;

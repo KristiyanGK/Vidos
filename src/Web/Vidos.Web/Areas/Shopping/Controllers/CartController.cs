@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Vidos.Services.DataServices.Contracts;
+using Vidos.Services.Mapping;
 using Vidos.Services.Models.Cart.ViewModels;
+using Vidos.Services.Models.CartItem.ViewModels;
 using Vidos.Web.Controllers;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
 {
-    [Area("shopping")]
-    [Authorize(Roles = "User")]
+    [Area("Shopping")]
+    [Authorize]
     public class CartController : BaseController
     {
         private IProductsService _productsService;
@@ -25,7 +28,7 @@ namespace Vidos.Web.Areas.Shopping.Controllers
         {
             var model = new CartIndexViewModel()
             {
-                Items = this._cartService.Items,
+                Items = this._cartService.Items.AsQueryable().To<CartItemIndexViewModel>().ToList(),
                 TotalValue = this._cartService.TotalValue(),
                 ReturnUrl = returnUrl
             };

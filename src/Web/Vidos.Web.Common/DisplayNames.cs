@@ -11,5 +11,21 @@
         public const string Password = "Парола";
 
         public const string ConfirmPassword = "Потвърди парола";
+
+        public const string ClientName = "Клиент";
+
+        public const string Line1 = "Адрес(1)";
+
+        public const string Line2 = "Адрес(2)";
+
+        public const string Line3 = "Адрес(3)";
+
+        public const string City = "Град";
+
+        public const string State = "Област";
+
+        public const string Country = "Държава";
+
+        public const string IsShipped = "Изпратен?";
     }
 }
