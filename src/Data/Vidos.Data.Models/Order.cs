@@ -4,16 +4,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Vidos.Data.Models
 {
-    public class Order
+    public class Order : BaseModel
     {
         public Order()
         {
-            this.Id = Guid.NewGuid().ToString();
             this.PurchaseDate = DateTime.UtcNow;
             this.Items = new HashSet<CartItem>();
         }
-
-        public string Id { get; set; }
 
         public string ClientId { get; set; }
 

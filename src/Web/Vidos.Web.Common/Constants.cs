@@ -1,4 +1,6 @@
-﻿namespace Vidos.Web.Common
+﻿using System;
+
+namespace Vidos.Web.Common
 {
     public static class Constants
     {
@@ -20,5 +22,7 @@
 
         public const int MaxPasswordLength = 100;
         public const int MinPasswordLength = 3;
+
+        public static TimeSpan SessionIdleTimeoutTimespan = TimeSpan.FromHours(4);
     }
 }

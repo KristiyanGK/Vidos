@@ -12,5 +12,10 @@ namespace Vidos.Web.Controllers
 
             return RedirectToAction(actionName, controllerName);
         }
+
+        public virtual IActionResult Error()
+        {
+            return View();
+        }
     }
 }

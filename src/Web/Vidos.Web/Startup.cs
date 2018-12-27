@@ -1,10 +1,12 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,7 @@ using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Mapping;
 using Vidos.Services.Models.Order.ViewModels;
 using Vidos.Services.Models.Product.ViewModels;
+using Vidos.Web.Common;
 using Vidos.Web.Common.Seeder;
 
 namespace Vidos.Web
@@ -36,7 +39,8 @@ namespace Vidos.Web
                 typeof(AllProductsViewModel).Assembly,
                 typeof(ProductDetailsViewModel).Assembly,
                 typeof(ProductsCreateViewModel).Assembly,
-                typeof(OrderCheckoutViewModel).Assembly
+                typeof(OrderCheckoutViewModel).Assembly,
+                typeof(MyOrdersViewModel).Assembly
             );
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -63,8 +67,12 @@ namespace Vidos.Web
                 .AddDefaultUI(UIFramework.Bootstrap4);
 
             services.AddAutoMapper();
-            services.AddMemoryCache();
-            services.AddSession();
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = Constants.SessionIdleTimeoutTimespan;
+                options.Cookie.HttpOnly = true; // XSS Security
+            });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

@@ -32,6 +32,8 @@
 
         public const string PurchaseDate = "Дата на поръчка";
 
-        public const string Items = "Покуки";
+        public const string Items = "Покупки";
+
+        public const string Address = "Адрес";
     }
 }

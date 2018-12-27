@@ -222,27 +222,27 @@ namespace Vidos.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CartItem",
+                name: "CartItems",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
-                    AirConditionerId = table.Column<string>(nullable: true),
+                    ProductId = table.Column<string>(nullable: true),
                     OrderId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartItem", x => x.Id);
+                    table.PrimaryKey("PK_CartItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CartItem_AirConditioners_AirConditionerId",
-                        column: x => x.AirConditionerId,
-                        principalTable: "AirConditioners",
+                        name: "FK_CartItems_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CartItem_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
+                        name: "FK_CartItems_AirConditioners_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "AirConditioners",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -292,14 +292,14 @@ namespace Vidos.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItem_AirConditionerId",
-                table: "CartItem",
-                column: "AirConditionerId");
+                name: "IX_CartItems_OrderId",
+                table: "CartItems",
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItem_OrderId",
-                table: "CartItem",
-                column: "OrderId");
+                name: "IX_CartItems_ProductId",
+                table: "CartItems",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_ClientId",
@@ -325,22 +325,22 @@ namespace Vidos.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CartItem");
+                name: "CartItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AirConditioners");
-
-            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Brands");
+                name: "AirConditioners");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Brands");
         }
     }
 }

@@ -8,6 +8,7 @@ using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Mapping;
 using Vidos.Services.Models.Product.ViewModels;
+using Vidos.Web.Common.Exceptions;
 
 namespace Vidos.Services.DataServices
 {
@@ -45,7 +46,7 @@ namespace Vidos.Services.DataServices
 
             if (product == null)
             {
-                throw new ArgumentNullException(nameof(product));
+                throw new ProductNotFoundException();
             }
 
             return product;

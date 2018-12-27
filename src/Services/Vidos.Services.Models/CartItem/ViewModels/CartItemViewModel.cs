@@ -15,9 +15,9 @@ namespace Vidos.Services.Models.CartItem.ViewModels
         {
             configuration.CreateMap<Data.Models.CartItem, CartItemDetailsViewModel>()
                 .ForMember(dest => dest.ProductId,
-                    opt => opt.MapFrom(src => src.AirConditioner.Id))
+                    opt => opt.MapFrom(src => src.Product.Id))
                 .ForMember(dest => dest.ProductName,
-                    opt => opt.MapFrom(src => src.AirConditioner.Name));
+                    opt => opt.MapFrom(src => src.Product.Name));
         }
     }
 }

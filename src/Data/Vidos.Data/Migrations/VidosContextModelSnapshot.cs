@@ -178,19 +178,19 @@ namespace Vidos.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AirConditionerId");
-
                     b.Property<string>("OrderId");
+
+                    b.Property<string>("ProductId");
 
                     b.Property<int>("Quantity");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AirConditionerId");
-
                     b.HasIndex("OrderId");
 
-                    b.ToTable("CartItem");
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("Vidos.Data.Models.Order", b =>
@@ -338,13 +338,13 @@ namespace Vidos.Data.Migrations
 
             modelBuilder.Entity("Vidos.Data.Models.CartItem", b =>
                 {
-                    b.HasOne("Vidos.Data.Models.AirConditioner", "AirConditioner")
-                        .WithMany()
-                        .HasForeignKey("AirConditionerId");
-
-                    b.HasOne("Vidos.Data.Models.Order")
+                    b.HasOne("Vidos.Data.Models.Order", "Order")
                         .WithMany("Items")
                         .HasForeignKey("OrderId");
+
+                    b.HasOne("Vidos.Data.Models.AirConditioner", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Vidos.Data.Models.Order", b =>

@@ -1,18 +1,15 @@
-﻿using System;
-
-namespace Vidos.Data.Models
+﻿namespace Vidos.Data.Models
 {
-    public class CartItem
+    public class CartItem : BaseModel
     {
-        public CartItem()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
-
-        public string Id { get; set; }
-
         public int Quantity { get; set; }
 
-        public AirConditioner AirConditioner { get; set; }
+        public string ProductId { get; set; }
+
+        public AirConditioner Product { get; set; }
+
+        public string OrderId { get; set; }
+
+        public Order Order { get; set; }
     }
 }

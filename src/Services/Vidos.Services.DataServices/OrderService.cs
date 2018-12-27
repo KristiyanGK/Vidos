@@ -23,7 +23,7 @@ namespace Vidos.Services.DataServices
                 this.All()
                     .Include(o => o.Client)
                     .Include(o => o.Items)
-                    .ThenInclude(i => i.AirConditioner)
+                    .ThenInclude(i => i.Product)
                     .FirstOrDefault(o => o.Id == id);
 
             return order;
@@ -44,7 +44,7 @@ namespace Vidos.Services.DataServices
 
         public async Task SaveOrderAsync(Order order)
         {
-            this._ordeRepository.AttachRange(order.Items.Select(l => l.AirConditioner));
+            this._ordeRepository.AttachRange(order.Items.Select(l => l.Product));
 
             if (this._ordeRepository.FindById(order.Id) == null)
             {

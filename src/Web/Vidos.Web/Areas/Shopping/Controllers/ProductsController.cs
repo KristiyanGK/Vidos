@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vidos.Services.DataServices.Contracts;
+using Vidos.Services.Models.Product.ViewModels;
+using Vidos.Web.Common.Exceptions;
 using Vidos.Web.Controllers;
 using X.PagedList;
 
@@ -30,7 +32,9 @@ namespace Vidos.Web.Areas.Shopping.Controllers
         [HttpGet]
         public IActionResult Details(string id, string returnUrl)
         {
-            var product = this._productsService.GetProductDetailsViewModelById(id);
+            ProductDetailsViewModel product;
+
+            product = this._productsService.GetProductDetailsViewModelById(id);
 
             product.ReturnUrl = returnUrl;
 
