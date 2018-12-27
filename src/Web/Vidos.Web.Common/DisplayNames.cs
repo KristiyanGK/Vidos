@@ -27,5 +27,11 @@
         public const string Country = "Държава";
 
         public const string IsShipped = "Изпратен?";
+
+        public const string Zip = "Зип код";
+
+        public const string PurchaseDate = "Дата на поръчка";
+
+        public const string Items = "Покуки";
     }
 }

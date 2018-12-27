@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Http.Extensions
-@model Vidos.Services.Models.Order.ViewModels.OrderDetailsViewModel
+﻿@model Vidos.Services.Models.Order.ViewModels.OrderDetailsViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -76,6 +75,7 @@
     
     <partial name="_OrderCartItemAdministrationPartial" model="@Model.Items"/>
 </div>
+
 <div>
     <a asp-area="Administration" asp-controller="Order" asp-action="All">Обратно</a>
 </div>

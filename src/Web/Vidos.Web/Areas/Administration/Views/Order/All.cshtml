@@ -57,18 +57,31 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IsShipped)
+                    @* added hidden p so that the datatables js sort works on this collumn *@
+                    <p style="visibility: hidden">@item.IsShipped</p>
                 </td>
                 <td>
-                    <a class="btn btn-light" 
+                    <a class="btn btn-primary" 
                        asp-area="Administration"
                        asp-controller="Order"
                        asp-action="Details"
                        asp-route-id="@item.Id">
                         Детайли
                     </a>
-                    <a class="btn btn-light">
-                        Маркирай за изпратени
-                    </a>
+                    @if (!item.IsShipped)
+                    {
+                        <form 
+                            asp-area="Administration"
+                            asp-controller="Order"
+                            asp-action="MarkAsShipped"
+                            asp-route-orderId="@item.Id"
+                            method="post">
+                            <button class="btn btn-primary">Маркирай за изпратено</button>
+                        </form>
+                    }
+                    <form>
+
+                    </form>
                 </td>
             </tr>
         }

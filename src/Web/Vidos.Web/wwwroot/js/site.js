@@ -19,7 +19,7 @@ $(document).ready(function() {
     $("#AllOrdersAdminTable").DataTable({
         "aoColumnDefs": [
             {
-                "bSortable": false, "aTargets" : [ 7 ]
+                "bSortable": false, "aTargets": [7]
             }
         ],
         "language": {
