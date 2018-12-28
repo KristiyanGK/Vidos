@@ -12,7 +12,6 @@ using Vidos.Web.Controllers;
 namespace Vidos.Web.Areas.Shopping.Controllers
 {
     [Area("Shopping")]
-    [Authorize]
     public class OrderController : BaseController
     {
         private readonly IOrderService _orderService;
@@ -49,10 +48,8 @@ namespace Vidos.Web.Areas.Shopping.Controllers
                 await this._orderService.SaveOrderAsync(order);
                 return RedirectToAction(nameof(Completed));
             }
-            else
-            {
-                return View(orderCheckoutModel);
-            }
+
+            return View(orderCheckoutModel);
         }
 
         public ViewResult Completed()
