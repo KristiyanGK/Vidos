@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Models.Product.ViewModels;
-using Vidos.Web.Common.Constants;
-using Vidos.Web.Common.Exceptions;
 using Vidos.Web.Controllers;
 using X.PagedList;
 

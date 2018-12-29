@@ -1,7 +1,7 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
+.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
@@ -31,7 +31,7 @@ html {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-button.accept-policy {
+.accept-policy {
     font-size: 1rem;
     line-height: inherit;
 }
@@ -129,7 +129,7 @@ body {
     -webkit-box-shadow: inset 0 1px #fff,0 0 8px #c8cfe6;
     -moz-box-shadow: inset 0 1px #fff,0 0 8px #c8cfe6;
     box-shadow: inset 0 1px #fff,0 0 8px #c8cfe6;
-    color: inset 0 1px #fff,0 0 8px #c8cfe6;
+    color: #fff;
 }
 
 .description {
@@ -139,7 +139,6 @@ body {
     margin: 0 10px;
     border-top: 1px solid #ECECEC;
     padding: 10px;
-    margin: 0;
 }
 
 .shop-item img {
@@ -172,7 +171,6 @@ body {
 
     .shop-item .colors span {
         display: inline-block;
-        *display: inline;
         width: 8px;
         height: 8px;
         border-width: 1px;
@@ -229,7 +227,7 @@ body {
     -webkit-box-shadow: inset 0 1px #fff,0 0 8px #c8cfe6;
     -moz-box-shadow: inset 0 1px #fff,0 0 8px #c8cfe6;
     box-shadow: inset 0 1px #fff,0 0 8px #c8cfe6;
-    color: inset 0 1px #fff,0 0 8px #c8cfe6;
+    color: #fff;
 }
 
 .scrollToTopBtn {
