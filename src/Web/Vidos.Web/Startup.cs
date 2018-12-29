@@ -19,6 +19,7 @@ using Vidos.Services.Mapping;
 using Vidos.Services.Models.Order.ViewModels;
 using Vidos.Services.Models.Product.ViewModels;
 using Vidos.Web.Common;
+using Vidos.Web.Common.Constants;
 using Vidos.Web.Common.Seeder;
 
 namespace Vidos.Web
@@ -80,6 +81,7 @@ namespace Vidos.Web
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddScoped<IProductsService, ProductsService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IBrandService, BrandService>();
 
             services.AddTransient<Seeder>();
 

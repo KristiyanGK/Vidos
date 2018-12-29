@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Vidos.Web.Common
+namespace Vidos.Web.Common.Constants
 {
     public static class Constants
     {
@@ -22,6 +22,9 @@ namespace Vidos.Web.Common
 
         public const int MaxPasswordLength = 100;
         public const int MinPasswordLength = 3;
+
+        public const int ProductsPerRow = 3;
+        public const int MaxItemsPerRow = 12;
 
         public static TimeSpan SessionIdleTimeoutTimespan = TimeSpan.FromHours(4);
     }

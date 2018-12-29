@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -40,7 +41,12 @@ namespace Vidos.Web.Areas.Shopping.Controllers
             }
 
             var order = Mapper.Map<Order>(orderCheckoutModel);
-            order.ClientId = this._userManager.GetUserId(this.User);
+            var clientId = this._userManager.GetUserId(this.User);
+
+            if (clientId != null)
+            {
+                order.ClientId = this._userManager.GetUserId(this.User);
+            }
 
             if (ModelState.IsValid)
             {

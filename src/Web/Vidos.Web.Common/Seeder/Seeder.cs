@@ -22,35 +22,35 @@ namespace Vidos.Web.Common.Seeder
 
         public void SeedRoles()
         {
-            var adminRoleExists = _roleManager.RoleExistsAsync(Constants.AdministratorRole).Result;
+            var adminRoleExists = _roleManager.RoleExistsAsync(Constants.Constants.AdministratorRole).Result;
             if (!adminRoleExists)
             {
-                _roleManager.CreateAsync(new IdentityRole { Name = Constants.AdministratorRole }).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole { Name = Constants.Constants.AdministratorRole }).GetAwaiter().GetResult();
             }
 
-            var userRoleExists = _roleManager.RoleExistsAsync(Constants.UserRole).Result;
+            var userRoleExists = _roleManager.RoleExistsAsync(Constants.Constants.UserRole).Result;
             if (!userRoleExists)
             {
-                _roleManager.CreateAsync(new IdentityRole { Name = Constants.UserRole }).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole { Name = Constants.Constants.UserRole }).GetAwaiter().GetResult();
             }
         }
 
         public void SeedAdmin()
         {
-            var adminUserExists = _userManager.FindByEmailAsync(Constants.AdministratorEmail).Result != null;
+            var adminUserExists = _userManager.FindByEmailAsync(Constants.Constants.AdministratorEmail).Result != null;
 
             if (!adminUserExists)
             {
                 var user = new VidosUser
                 {
-                    UserName = Constants.AdministratorEmail,
-                    Email = Constants.AdministratorEmail,
-                    FirstName = Constants.AdministratorName,
-                    LastName = Constants.AdministratorName,
+                    UserName = Constants.Constants.AdministratorEmail,
+                    Email = Constants.Constants.AdministratorEmail,
+                    FirstName = Constants.Constants.AdministratorName,
+                    LastName = Constants.Constants.AdministratorName,
                 };
 
-                _userManager.CreateAsync(user, Constants.AdministratorPassword).GetAwaiter().GetResult();
-                _userManager.AddToRoleAsync(user, Constants.AdministratorRole).GetAwaiter().GetResult();
+                _userManager.CreateAsync(user, Constants.Constants.AdministratorPassword).GetAwaiter().GetResult();
+                _userManager.AddToRoleAsync(user, Constants.Constants.AdministratorRole).GetAwaiter().GetResult();
             }
         }
 

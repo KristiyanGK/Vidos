@@ -1,4 +1,4 @@
-﻿namespace Vidos.Web.Common
+﻿namespace Vidos.Web.Common.Constants
 {
     public static class DisplayNames
     {

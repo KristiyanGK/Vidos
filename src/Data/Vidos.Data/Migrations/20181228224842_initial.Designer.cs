@@ -10,7 +10,7 @@ using Vidos.Data;
 namespace Vidos.Data.Migrations
 {
     [DbContext(typeof(VidosContext))]
-    [Migration("20181227184506_initial")]
+    [Migration("20181228224842_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

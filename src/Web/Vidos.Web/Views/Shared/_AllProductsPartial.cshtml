@@ -1,28 +1,52 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
+@using Vidos.Web.Common.Constants
+@using X.PagedList
+@using X.PagedList.Mvc.Common
+@using X.PagedList.Mvc.Core
 @model IEnumerable<Vidos.Services.Models.Product.ViewModels.AllProductsViewModel>
 
-<div class="row">
-    @foreach (var product in Model)
-    {
-        <div class="col-sm-4">
-            <div class="shop-item">
-                <div class="image">
-                    <a href="@Url.Action("Details", "Products", new {id = product.Id, returnUrl = ViewContext.HttpContext.Request.GetEncodedPathAndQuery()})">
-                        <img src="~/@product.ImagePath" alt="@product.Name" />
-                    </a>
-                </div>
-                <div class="title">
-                    <h3>@product.Name</h3>
-                </div>
-                <div class="price">
-                    @product.Price &#1083;&#1074
-                </div>
-                <div class="description">
-                    <p>
-                        @product.Description
-                    </p>
+@{
+    int taken = 0;
+    int itemsToTake = Constants.ProductsPerRow;
+    int repeatNumber = (int)Math.Ceiling(Model.Count() / (double)itemsToTake);
+    int productsPerRow = Constants.MaxItemsPerRow / Constants.ProductsPerRow;
+}
+
+@for (int i = 0; i < repeatNumber; i++)
+{
+    <div class="row">
+        @foreach (var product in Model.Skip(taken).Take(itemsToTake))
+         {
+            <div class="col-sm-@productsPerRow">
+                <div class="shop-item">
+                    <div class="image">
+                        <a href="@Url.Action("Details", "Products", new {id = product.Id, returnUrl = ViewContext.HttpContext.Request.GetEncodedPathAndQuery()})">
+                            <img src="~/@product.ImagePath" alt="@product.Name" />
+                        </a>
+                    </div>
+                    <div class="title">
+                        <h3>@product.Name</h3>
+                    </div>
+                    <div class="price">
+                        @product.Price &#1083;&#1074
+                    </div>
+                    <div class="description">
+                        <p>
+                            @product.Description
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+         }
+    </div>
+
+    taken += itemsToTake;
+}
+
+<br/>
+
+@Html.PagedListPager((IPagedList)Model, pageNumber => Url.Action("All", "Products", new { pageNumber }),
+    new PagedListRenderOptions {
+        LiElementClasses = new string[] { "page-item" },
+        PageClasses = new string[] { "page-link" }
+    })

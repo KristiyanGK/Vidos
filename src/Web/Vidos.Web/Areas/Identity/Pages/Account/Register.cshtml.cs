@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Vidos.Data.Models;
 using Vidos.Web.Common;
+using Vidos.Web.Common.Constants;
 
 namespace Vidos.Web.Areas.Identity.Pages.Account
 {

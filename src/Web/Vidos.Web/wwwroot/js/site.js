@@ -15,7 +15,29 @@ function topFunction() {
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
-$(document).ready(function() {
+function openNav() {
+    document.getElementById("AllProductsSideNav").style.width = "250px";
+    document.getElementById("mainWithSideNav").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("AllProductsSideNav").style.width = "0";
+    document.getElementById("mainWithSideNav").style.marginLeft = "0";
+}
+
+$(document).ready(function () {
+    var dropDown = $("#BrandsSelector");
+
+    $.getJSON("/Shopping/Brand/All", function (result) {
+        $.each(result, function (key, entry) {
+            dropDown.append($("<option></option>").attr("value", entry).text(entry));
+        });
+    });
+
+    $("#btnFilter").click(function() {
+
+    });
+
     $("#AllOrdersAdminTable").DataTable({
         "aoColumnDefs": [
             {

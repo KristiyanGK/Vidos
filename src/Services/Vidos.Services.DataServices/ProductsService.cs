@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
@@ -42,7 +43,7 @@ namespace Vidos.Services.DataServices
 
         public AirConditioner GetProductById(string id)
         {
-            var product = this._repo.FindById(id);
+            var product = this._repo.All().Include(p => p.Brand).FirstOrDefault(p => p.Id == id);
 
             if (product == null)
             {
