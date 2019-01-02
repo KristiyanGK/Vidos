@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Models.Product.ViewModels;
 using Vidos.Web.Controllers;
@@ -17,25 +18,29 @@ namespace Vidos.Web.Areas.Shopping.Controllers
             this._productsService = productsService;
         }
 
-        [HttpGet]
-        public IActionResult All(int? pageNumber)
+        public IActionResult All() => View();
+
+        public async Task<IActionResult> AllPartial(int? pageNumber, string brandName, string priceSort, int productsOnPage)
         {
-            var products = this._productsService.GetAll();
+            var products = await this._productsService.GetAllAsync(brandName, priceSort);
 
             var page = pageNumber ?? 1;
-            var onePageOfProducts = products.ToPagedList(page, 9);
 
-            return View(onePageOfProducts);
+            var pagedList = products.ToPagedList(page, productsOnPage);
+
+            return PartialView("_AllProductsPartial", pagedList);
         }
 
         [HttpGet]
-        public IActionResult Details(string id, string returnUrl)
+        public IActionResult Details(string id, string query)
         {
             ProductDetailsViewModel product;
 
-            product = this._productsService.GetProductDetailsViewModelById(id);
+            product = this._productsService.GetProductDetailsViewModelById(id); 
 
-            product.ReturnUrl = returnUrl;
+            //TODO: CHECK if exists and make not found page
+
+            product.ReturnUrl = "/Shopping" + query;
 
             return View(product);
         }

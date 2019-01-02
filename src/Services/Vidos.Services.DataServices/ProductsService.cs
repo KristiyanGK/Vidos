@@ -7,8 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
+using Vidos.Services.DataServices.Extensions;
 using Vidos.Services.Mapping;
 using Vidos.Services.Models.Product.ViewModels;
+using Vidos.Web.Common.Constants;
 using Vidos.Web.Common.Exceptions;
 
 namespace Vidos.Services.DataServices
@@ -23,12 +25,25 @@ namespace Vidos.Services.DataServices
             this._repo = repo;
         }
 
-        public IEnumerable<AllProductsViewModel> GetAll()
-        {
-            var list = this._repo.All()
-                .To<AllProductsViewModel>()
-                .ToList();
 
+        public async Task<IEnumerable<AllProductsViewModel>> GetAllAsync()
+        {
+            var list = await this._repo.All()
+                .Include(p => p.Brand)
+                .To<AllProductsViewModel>()
+                .ToListAsync();
+
+            return list;
+        }
+
+        public async Task<IEnumerable<AllProductsViewModel>> GetAllAsync(string brandName, string priceSort)
+        {
+            var list = await this._repo.All()
+                .Include(p => p.Brand)
+                .ApplyFilters(brandName, priceSort)
+                .To<AllProductsViewModel>()
+                .ToListAsync();
+            
             return list;
         }
 

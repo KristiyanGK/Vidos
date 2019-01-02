@@ -1,31 +1,64 @@
-﻿@model IEnumerable<Vidos.Services.Models.Product.ViewModels.AllProductsViewModel>
-@{
+﻿@{
     ViewData["Title"] = "All";
 
 }
 
-<div class="row">
-    <div class="col-sm-12" id="parent">
-        <div class="card">
-            <div class="card-header">
-                <a class="card-link" data-toggle="collapse" href="#filter">
-                    Филтрири
-                </a>
-            </div>
-            <div id="filter" class="collapse show" data-parent="#parent">
-                <div class="card-body">
-                    <select id="BrandsSelector"></select>
-                    <button class="btn btn-primary" id="btnFilter">
-                        Филтрирай
-                    </button>
+<div id="LoadingProducts">
+    <div class="row">
+        <div class="col-sm-12" id="parent">
+            <div class="card">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#filter">
+                        Опции за търсене
+                    </a>
+                </div>
+                <div id="filter" class="collapse show" data-parent="#parent">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Марка:</label>
+                                <select id="BrandsSelector">
+                                    <option value="Всички">Всички</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Цена:</label>
+                                <select id="PriceSelector">
+                                    <option value="0">Без подреждане</option>
+                                    <option value="1">Възходяшо</option>
+                                    <option value="2">Низходящо</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Брой продукти на страницата:</label>
+                                <select id="ItemsOnPageSelector">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        var calc = 9 * i;
+                                        <option value="@calc">@calc</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-danger" id="btnClear">
+                            Изчисти
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="section">
-    <div id="AllProductsBody" class="container">
-        <partial name="_AllProductsPartial" model="@Model"/>
+    <div class="section">
+        <div style="display: none" id="AllProductsBody" class="animate-bottom container">
+
+        </div>
+
+        <div id="loader"></div>
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/AllProducts.js"></script>
+}

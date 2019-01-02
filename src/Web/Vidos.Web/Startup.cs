@@ -76,7 +76,7 @@ namespace Vidos.Web
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+            
             services.AddScoped(SessionCartService.GetCart);
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddScoped<IProductsService, ProductsService>();
@@ -96,6 +96,7 @@ namespace Vidos.Web
             app.UseCookiePolicy();
             app.UseSession();
             app.UseAuthentication();
+            app.UseStatusCodePagesWithReExecute("/error/{0}");
 
             if (env.IsDevelopment())
             {

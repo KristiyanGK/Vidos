@@ -9,12 +9,6 @@ function scrollFunction() {
     }
 }
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
-
 function openNav() {
     document.getElementById("AllProductsSideNav").style.width = "250px";
     document.getElementById("mainWithSideNav").style.marginLeft = "250px";
@@ -25,17 +19,13 @@ function closeNav() {
     document.getElementById("mainWithSideNav").style.marginLeft = "0";
 }
 
+function scrollToTheTop() {
+    $("html, body").animate({ scrollTop: 0 }, "fast");
+}
+
 $(document).ready(function () {
-    var dropDown = $("#BrandsSelector");
-
-    $.getJSON("/Shopping/Brand/All", function (result) {
-        $.each(result, function (key, entry) {
-            dropDown.append($("<option></option>").attr("value", entry).text(entry));
-        });
-    });
-
-    $("#btnFilter").click(function() {
-
+    $("#toTopBtn").click(function() {
+        scrollToTheTop();
     });
 
     $("#AllOrdersAdminTable").DataTable({

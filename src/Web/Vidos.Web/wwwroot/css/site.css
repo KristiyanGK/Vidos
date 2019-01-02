@@ -9,6 +9,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /* Sticky footer styles
 -------------------------------------------------- */
+
 html {
     font-size: 14px;
 }
@@ -62,6 +63,68 @@ body {
     Custome css starts here
 */
 
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 100%;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+}
+
+#AllProductsBody {
+    display: none;
+    text-align: center;
+}
+
+@-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+}
+
+
 /* The side navigation menu */
 .sidenav {
     height: 100%; /* 100% Full-height */
@@ -75,6 +138,40 @@ body {
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
+
+/*404 Page Beginning*/
+
+.content-404 h1 {
+    color: #363432;
+    font-family: 'Roboto', sans-serif;
+    font-size: 41px;
+    font-weight: 300;
+}
+
+.content-404 img {
+    margin:0 auto;
+}
+
+.content-404 p {
+    color: #363432;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
+.content-404  h2 {
+    margin-top:50px;
+}
+
+.content-404 h2 a {
+    background: #FE980F;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 44px;
+    font-weight: 300;
+    padding: 8px 40px;
+}
+
+/*404 Page End*/
 
 /* The navigation menu links */
 .sidenav a {
@@ -111,7 +208,6 @@ body {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
-
 
 .shop-item {
     position: relative;

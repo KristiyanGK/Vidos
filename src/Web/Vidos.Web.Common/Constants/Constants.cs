@@ -14,6 +14,8 @@ namespace Vidos.Web.Common.Constants
 
         public const string UserRole = "User";
 
+        public const string AllBrands = "Всички";
+
         public const int MinFirstNameLength = 3;
         public const int MaxFirstNameLength = 100;
 

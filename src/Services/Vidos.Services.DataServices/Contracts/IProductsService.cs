@@ -7,7 +7,8 @@ namespace Vidos.Services.DataServices.Contracts
 {
     public interface IProductsService
     {
-        IEnumerable<AllProductsViewModel> GetAll();
+        Task<IEnumerable<AllProductsViewModel>> GetAllAsync();
+        Task<IEnumerable<AllProductsViewModel>> GetAllAsync(string brandName, string priceSort);
         ProductDetailsViewModel GetProductDetailsViewModelById(string id);
         AirConditioner GetProductById(string id);
         Task AddAsync(AirConditioner product);

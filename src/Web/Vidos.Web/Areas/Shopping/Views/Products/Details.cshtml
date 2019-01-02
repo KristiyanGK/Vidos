@@ -51,14 +51,14 @@
                 </table>
             </div>
 
-            <div class="col-sm-12" id="parent">
+            <div class="col-sm-12" id="accordion">
                 <div class="card">
                     <div class="card-header">
                         <a class="card-link" data-toggle="collapse" href="#description">
                             Описание
                         </a>
                     </div>
-                    <div id="description" class="collapse show" data-parent="#parent">
+                    <div id="description" class="collapse show">
                         <div class="card-body">
                             @Model.Description
                         </div>
@@ -66,41 +66,52 @@
                 </div>
 
                 <div class="card">
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#specification">
-                                Спецификации
-                            </a>
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#specification">
+                            Спецификации
+                        </a>
+                    </div>
+                    <div id="specification" class="collapse show">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tr>
+                                    <td class="col-sm-4">Марка</td>
+                                    <td class="col-sm-8">@Model.BrandName</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-4">Произход</td>
+                                    <td class="col-sm-8">@Model.Origin</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-4">Номинална консумация (охлаждане)</td>
+                                    <td class="col-sm-8">@Model.CoolingConsumption kW</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-4">Номинална консумация (отопление)</td>
+                                    <td class="col-sm-8">@Model.HeatingConsumption kW</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-4">Капацитет охлаждане</td>
+                                    <td class="col-sm-8">@Model.Cooling kW</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-4">Капацитет на затопляне</td>
+                                    <td class="col-sm-8">@Model.Heating kW</td>
+                                </tr>
+                            </table>
                         </div>
-                        <div id="specification" class="collapse show" data-parent="#parent">
-                            <div class="card-body">
-                                <table class="table table-striped">
-                                    <tr>
-                                        <td class="col-sm-4">Марка</td>
-                                        <td class="col-sm-8">@Model.BrandName</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-sm-4">Произход</td>
-                                        <td class="col-sm-8">@Model.Origin</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-sm-4">Номинална консумация (охлаждане)</td>
-                                        <td class="col-sm-8">@Model.CoolingConsumption kW</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-sm-4">Номинална консумация (отопление)</td>
-                                        <td class="col-sm-8">@Model.HeatingConsumption kW</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-sm-4">Капацитет охлаждане</td>
-                                        <td class="col-sm-8">@Model.Cooling kW</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-sm-4">Капацитет на затопляне</td>
-                                        <td class="col-sm-8">@Model.Heating kW</td>
-                                    </tr>
-                                </table>
-                            </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#reviews">
+                            Отзиви
+                        </a>
+                    </div>
+                    <div id="reviews" class="collapse show">
+                        <div class="card-body">
+                            TODO: Add reviews
                         </div>
                     </div>
                 </div>

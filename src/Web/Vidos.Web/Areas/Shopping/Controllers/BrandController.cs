@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Web.Controllers;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
 {
-    [Area("Shopping")]
-    public class BrandController : BaseController
+    public class BrandController : BaseApiController
     {
         private readonly IBrandService _brandService;
 
@@ -14,11 +14,8 @@ namespace Vidos.Web.Areas.Shopping.Controllers
             _brandService = brandService;
         }
 
-        public IActionResult All()
-        {
-            var all = _brandService.AllNames();
-
-            return Json(all);
-        }
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> Get()
+            => new List<string>(_brandService.AllNames());
     }
 }
