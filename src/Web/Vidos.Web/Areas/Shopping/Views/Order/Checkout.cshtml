@@ -1,47 +1,109 @@
-﻿@model Vidos.Services.Models.Order.ViewModels.OrderCheckoutViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@using Vidos.Data.Models
+@using Vidos.Web.Common.Constants
+@model Vidos.Services.Models.Order.ViewModels.OrderCheckoutViewModel
+@inject UserManager<VidosUser> UserManager
 
-<h2>Поръчай сега!</h2>
-<p>Моля въведете вашите детайли</p>
+@{
+    var user = UserManager.GetUserAsync(User).Result;
+}
 
-<form asp-action="Checkout" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <h3>Адрес:</h3>
-    <div class="form-group">
-        <label asp-for="Line1">Ред 1:</label>
-        <input asp-for="Line1" class="form-control" />
-        <span asp-validation-for="Line1" class="text-danger"></span>
+<div void Foo(){}class="checkout-row">
+    <div class="col-75">
+        <div class="checkout-container">
+            <form asp-area="Shopping" asp-action="Checkout" asp-controller="Order" method="post" id="CheckoutForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="checkout-row">
+                    <div class="col-50">
+                        <h3>Адрес на плащане</h3>
+                        @if (this.User.IsInRole(Constants.GuestRole))
+                        {
+                            <div class="checkout-row">
+                                <div class="col-50">
+                                    <i class="fa fa-user"></i>
+                                    <label asp-for="@Model.FirstName"></label>
+                                    <span class="text-danger" asp-validation-for="@Model.FirstName"></span>
+                                    <input asp-for="@Model.FirstName" placeholder="@DisplayNames.FirstName">
+                                </div>
+                                <div class="col-50">
+                                    <i class="fas fa-user-alt"></i>
+                                    <label asp-for="@Model.LastName"></label>
+                                    <span class="text-danger" asp-validation-for="@Model.LastName"></span>
+                                    <input asp-for="@Model.LastName" placeholder="@DisplayNames.LastName">
+                                </div>
+                            </div>
+                            <div class="checkout-row">
+                                <div class="col-50">
+                                    <i class="fas fa-envelope"></i>
+                                    <label asp-for="@Model.Email"></label>
+                                    <span class="text-danger" asp-validation-for="@Model.Email"></span>
+                                    <input asp-for="@Model.Email" placeholder="@DisplayNames.Email">
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <input type="hidden" asp-for="@Model.Email" value="@user.Email"/>
+                            <input type="hidden" asp-for="@Model.FirstName" value="@user.FirstName"/>
+                            <input type="hidden" asp-for="@Model.LastName" value="@user.LastName"/>
+                        }
+                        <i class="fa fa-address-card-o"></i>
+                        <label asp-for="@Model.Line1">Адрес</label>
+                        <span class="text-danger" asp-validation-for="@Model.Line1"></span>
+                        <input asp-for="@Model.Line1" placeholder="@DisplayNames.Line1">
+                        <input asp-for="@Model.Line2" placeholder="@DisplayNames.Line2">
+                        <input asp-for="@Model.Line3" placeholder="@DisplayNames.Line3">
+                        <div class="checkout-row">
+                            <div class="col-50">
+                                <i class="fa fa-institution"></i>
+                                <label asp-for="@Model.City"></label>
+                                <span class="text-danger" asp-validation-for="@Model.City"></span>
+                                <input asp-for="@Model.City" placeholder="@DisplayNames.City">
+                            </div>
+                            <div class="col-50">
+                                <i class="fas fa-flag"></i>
+                                <label asp-for="@Model.Country"></label>
+                                <span class="text-danger" asp-validation-for="@Model.Country"></span>
+                                <input asp-for="@Model.Country" placeholder="@DisplayNames.Country">
+                            </div>
+                        </div>
+
+                        <div class="checkout-row">
+                            <div class="col-50">
+                                <i class="fas fa-globe"></i>
+                                <label asp-for="@Model.State"></label>
+                                <span class="text-danger" asp-validation-for="@Model.Line1"></span>
+                                <input asp-for="@Model.State" placeholder="@DisplayNames.State">
+                            </div>
+                            <div class="col-50">
+                                <i class="fas fa-map-pin"></i>
+                                <label asp-for="@Model.Zip"></label>
+                                <input asp-for="@Model.Zip" placeholder="@DisplayNames.Zip">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout-row">
+                    <div class="col-50">
+                        <i class="far fa-credit-card"></i>
+                        <label asp-for="@Model.PaymentMethod"></label>
+                        <select id="PaymentSelector" class="form-control" asp-for="@Model.PaymentMethod">
+                            <option value="0">В Брой</option>
+                            <option value="1">С Карта</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="CardData">
+                    <div class="row" id="card-element">
+
+                    </div>
+                    <div class="row" id="card-errors" role="alert"></div>
+                </div>
+                <input id="CheckoutBtn" type="submit" value="Продължи с плащане" class="checkout-btn">
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="Line2">Ред 2:</label>
-        <input asp-for="Line2" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Line3">Ред 3:</label>
-        <input asp-for="Line3" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="City">Град:</label>
-        <input asp-for="City" class="form-control" />
-        <span asp-validation-for="City" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="State">Област:</label>
-        <input asp-for="State" class="form-control" />
-        <span asp-validation-for="State" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Zip">Зип код:</label>
-        <input asp-for="Zip" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Country">Държава:</label>
-        <input asp-for="Country" class="form-control" />
-        <span asp-validation-for="Country" class="text-danger"></span>
-    </div>
-    <div class="text-center">
-        <input class="btn btn-primary" type="submit" value="Поръчай" />
-    </div>
-</form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

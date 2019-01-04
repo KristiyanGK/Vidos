@@ -28,9 +28,7 @@ namespace Vidos.Web.Filters.AuthorizationFilters
 
                 VidosUser guest = new VidosUser
                 {
-                    UserName = "guest_" + userGuid,
-                    FirstName = Constants.GuestName,
-                    LastName = userGuid
+                    UserName = "guest_" + userGuid + "@guest.com"
                 };
 
                 await this._userManager.CreateAsync(guest);

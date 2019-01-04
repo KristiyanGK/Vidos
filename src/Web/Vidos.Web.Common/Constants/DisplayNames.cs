@@ -37,5 +37,7 @@
         public const string Address = "Адрес";
 
         public const string RememberMe = "Запомни ме?";
+
+        public const string PaymentMethod = "Метод за плащане";
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Stripe;
 using Vidos.Data;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
@@ -22,6 +23,7 @@ using Vidos.Web.Common;
 using Vidos.Web.Common.Constants;
 using Vidos.Web.Common.Seeder;
 using Vidos.Web.Filters.AuthorizationFilters;
+using OrderService = Vidos.Services.DataServices.OrderService;
 
 namespace Vidos.Web
 {
@@ -44,6 +46,8 @@ namespace Vidos.Web
                 typeof(OrderCheckoutViewModel).Assembly,
                 typeof(MyOrdersViewModel).Assembly
             );
+
+            StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
 
             services.Configure<CookiePolicyOptions>(options =>
             {

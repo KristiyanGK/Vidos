@@ -93,11 +93,13 @@
     @*
        Script for turning the UTC date into the local time of the user    
     *@
+    <script src="~/lib/momentjs/momentjs.js"></script>
     <script>
         $("td div").each(function (key, val) {
-            console.log(val);
-            var date = new Date(val.textContent) + " UTC";
-            val.innerHTML = date;
+            var date = moment(val.textContent).format("DD/MM/YYYY HH:mm:ss");
+            var utc = moment.utc(date).toDate();
+            var local = moment(utc).local().format("YYYY-MM-DD HH:mm:ss");
+            val.innerHTML = local;
         });
     </script>
 }
