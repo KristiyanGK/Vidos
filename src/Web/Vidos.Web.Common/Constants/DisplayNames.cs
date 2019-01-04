@@ -35,5 +35,7 @@
         public const string Items = "Покупки";
 
         public const string Address = "Адрес";
+
+        public const string RememberMe = "Запомни ме?";
     }
 }

@@ -23,7 +23,7 @@ namespace Vidos.Web.Areas.Administration.Controllers
         public IActionResult MarkAsShipped(string orderId)
         {
             Order order = this._orderService.GetOrderById(orderId);
-
+            
             if (order != null)
             {
                 order.IsShipped = true;

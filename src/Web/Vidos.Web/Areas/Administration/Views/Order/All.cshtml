@@ -4,8 +4,8 @@
     ViewData["Title"] = "All";
 }
 
-<table id="AllOrdersAdminTable" class="display">
-    <thead>
+<table id="AllOrdersAdminTable" class="table table-bordered table-responsive">
+    <thead class="thead-light">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ClientName)
@@ -41,7 +41,7 @@
                     @Html.DisplayFor(modelItem => item.ClientName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PurchaseDate)
+                    <div>@item.PurchaseDate</div>                
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Line1)
@@ -87,3 +87,17 @@
         }
     </tbody>
 </table>
+
+@section Scripts
+{
+    @*
+       Script for turning the UTC date into the local time of the user    
+    *@
+    <script>
+        $("td div").each(function (key, val) {
+            console.log(val);
+            var date = new Date(val.textContent) + " UTC";
+            val.innerHTML = date;
+        });
+    </script>
+}

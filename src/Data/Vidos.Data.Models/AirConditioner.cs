@@ -1,7 +1,14 @@
-﻿namespace Vidos.Data.Models
+﻿using System.Collections.Generic;
+
+namespace Vidos.Data.Models
 {
     public class AirConditioner : BaseModel
     {
+        public AirConditioner()
+        {
+            this.Reviews = new HashSet<Review>();
+        }
+
         public decimal Price { get; set; }
 
         public string Name { get; set; }
@@ -23,5 +30,7 @@
         public double HeatingConsumption { get; set; } // kW
 
         public double CoolingConsumption { get; set; } // kW
+
+        public ICollection<Review> Reviews { get; set; }
     }
 }

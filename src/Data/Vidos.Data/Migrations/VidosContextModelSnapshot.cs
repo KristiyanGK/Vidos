@@ -166,6 +166,10 @@ namespace Vidos.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Information");
+
+                    b.Property<string>("LogoPath");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
@@ -227,6 +231,28 @@ namespace Vidos.Data.Migrations
                     b.HasIndex("ClientId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Vidos.Data.Models.Review", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Body");
+
+                    b.Property<string>("ClientId");
+
+                    b.Property<string>("ProductId");
+
+                    b.Property<int>("Rating");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Vidos.Data.Models.VidosUser", b =>
@@ -352,6 +378,17 @@ namespace Vidos.Data.Migrations
                     b.HasOne("Vidos.Data.Models.VidosUser", "Client")
                         .WithMany("OrderHistory")
                         .HasForeignKey("ClientId");
+                });
+
+            modelBuilder.Entity("Vidos.Data.Models.Review", b =>
+                {
+                    b.HasOne("Vidos.Data.Models.VidosUser", "Client")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ClientId");
+
+                    b.HasOne("Vidos.Data.Models.AirConditioner", "Product")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

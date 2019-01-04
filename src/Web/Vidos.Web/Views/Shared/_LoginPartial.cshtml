@@ -1,10 +1,11 @@
 @using Microsoft.AspNetCore.Identity
 @using Vidos.Data.Models
+@using Vidos.Web.Common.Constants
 
 @inject SignInManager<VidosUser> SignInManager
 
 <ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
+    @if (SignInManager.IsSignedIn(User) && !User.IsInRole(Constants.GuestRole))
     {      
         <li class="nav-item">
             <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>

@@ -1,13 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
-@model Vidos.Services.DataServices.Contracts.ICartService
+@model Vidos.Services.Models.Cart.ViewModels.CartLayoutViewModel
 
 <div>
-    @if (Model.Items.Any())
+    @if (Model.ProductsCount != 0)
     {
         <small class="navbar-text">
             <b>Вашета количка:</b>
-            @Model.Items.Sum(x => x.Quantity) продукт(а)
-            @Model.TotalValue()&#1083;&#1074;
+            @Model.ProductsCount продукт(а)
+            @Model.TotalValue&#1083;&#1074;
         </small>
     }
     <a class="btn btn-sm btn-secondary"

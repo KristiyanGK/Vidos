@@ -8,6 +8,7 @@ namespace Vidos.Data.Models
         public VidosUser()
         {
             this.OrderHistory = new HashSet<Order>();
+            this.Reviews = new HashSet<Review>();
         }
 
         public string FirstName { get; set; }
@@ -15,5 +16,7 @@ namespace Vidos.Data.Models
         public string LastName { get; set; }
 
         public ICollection<Order> OrderHistory { get; set; }
+
+        public ICollection<Review> Reviews { get; set; }
     }
 }

@@ -4,6 +4,10 @@ namespace Vidos.Web.Common.Constants
 {
     public static class Constants
     {
+        public const string GuestUserName = "Guest";
+
+        public const string GuestName = "Гост";
+
         public const string AdministratorName = "Admin";
 
         public const string AdministratorPassword = "AdminPassword123";
@@ -13,6 +17,8 @@ namespace Vidos.Web.Common.Constants
         public const string AdministratorRole = "Admin";
 
         public const string UserRole = "User";
+
+        public const string GuestRole = "Guest";
 
         public const string AllBrands = "Всички";
 

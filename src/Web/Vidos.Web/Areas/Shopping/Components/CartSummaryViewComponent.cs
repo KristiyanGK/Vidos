@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vidos.Services.DataServices.Contracts;
+using Vidos.Services.Models.Cart.ViewModels;
+using System.Linq;
 
 namespace Vidos.Web.Areas.Shopping.Components
 {
@@ -14,7 +16,13 @@ namespace Vidos.Web.Areas.Shopping.Components
 
         public IViewComponentResult Invoke()
         {
-            return View(cart);
+            CartLayoutViewModel viewModel = new CartLayoutViewModel
+            {
+                ProductsCount = this.cart.Items.Any() ? this.cart.Items.Sum(c => c.Quantity) : 0,
+                TotalValue = this.cart.TotalValue()
+            };
+
+            return View(viewModel);
         }
     }
 }

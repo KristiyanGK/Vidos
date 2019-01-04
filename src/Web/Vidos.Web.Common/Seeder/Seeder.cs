@@ -33,6 +33,12 @@ namespace Vidos.Web.Common.Seeder
             {
                 _roleManager.CreateAsync(new IdentityRole { Name = Constants.Constants.UserRole }).GetAwaiter().GetResult();
             }
+
+            var guestRoleExists = _roleManager.RoleExistsAsync(Constants.Constants.GuestRole).Result;
+            if (!guestRoleExists)
+            {
+                _roleManager.CreateAsync(new IdentityRole { Name = Constants.Constants.GuestRole }).GetAwaiter().GetResult();
+            }
         }
 
         public void SeedAdmin()
@@ -63,10 +69,30 @@ namespace Vidos.Web.Common.Seeder
 
             Brand[] brands =
             {
-                new Brand { Name = "Daikin"},
-                new Brand { Name = "Mitsubishi"},
-                new Brand { Name = "Fujitsu"},
-                new Brand { Name = "Toshiba"}
+                new Brand
+                {
+                    Name = "Daikin",
+                    LogoPath = "images/logos/daikin.png",
+                    Information = "Temp Info Daikin"
+                },
+                new Brand
+                {
+                    Name = "Mitsubishi",
+                    LogoPath = "images/logos/mitsubishi.png",
+                    Information = "Temp Info Mitsubishi"
+                },
+                new Brand
+                {
+                    Name = "Fujitsu",
+                    LogoPath = "images/logos/fujitsu.jpg",
+                    Information = "Temp Info Fujitsu"
+                },
+                new Brand
+                {
+                    Name = "Toshiba",
+                    LogoPath = "images/logos/toshiba.gif",
+                    Information = "Temp Info Toshiba"
+                }
             };
 
             for (int i = 0; i < brands.Length; i++)

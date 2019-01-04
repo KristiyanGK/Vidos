@@ -21,6 +21,7 @@ using Vidos.Services.Models.Product.ViewModels;
 using Vidos.Web.Common;
 using Vidos.Web.Common.Constants;
 using Vidos.Web.Common.Seeder;
+using Vidos.Web.Filters.AuthorizationFilters;
 
 namespace Vidos.Web
 {
@@ -85,7 +86,10 @@ namespace Vidos.Web
 
             services.AddTransient<Seeder>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(EnsureLoggedInFilter));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

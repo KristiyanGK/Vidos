@@ -1,13 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Models.Order.ViewModels;
+using Vidos.Web.Common.Constants;
 using Vidos.Web.Controllers;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
@@ -37,21 +36,23 @@ namespace Vidos.Web.Areas.Shopping.Controllers
         {
             if (!this._cartService.Items.Any())
             {
-                ModelState.AddModelError("", "Количката Ви е празна!");
-            }
-
-            var order = Mapper.Map<Order>(orderCheckoutModel);
-            var clientId = this._userManager.GetUserId(this.User);
-
-            if (clientId != null)
-            {
-                order.ClientId = this._userManager.GetUserId(this.User);
+                ModelState.AddModelError(string.Empty, ErrorMessages.EmptyCart);
             }
 
             if (ModelState.IsValid)
             {
+                var order = Mapper.Map<Order>(orderCheckoutModel);
+                var clientId = this._userManager.GetUserId(this.User);
+
+                if (clientId != null)
+                {
+                    order.ClientId = this._userManager.GetUserId(this.User);
+                }
+
                 order.Items = this._cartService.Items.ToArray();
+
                 await this._orderService.SaveOrderAsync(order);
+
                 return RedirectToAction(nameof(Completed));
             }
 
@@ -61,6 +62,7 @@ namespace Vidos.Web.Areas.Shopping.Controllers
         public ViewResult Completed()
         {
             this._cartService.Clear();
+
             return View();
         }
     }

@@ -12,6 +12,10 @@ namespace Vidos.Data.Models
 
         public string Name { get; set; }
 
+        public string Information { get; set; }
+
+        public string LogoPath { get; set; }
+
         [JsonIgnore]
         public ICollection<AirConditioner> Products { get; set; }
     }
