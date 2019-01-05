@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Vidos.Services.Mapping;
 using Vidos.Services.Models.CartItem.ViewModels;
-using Vidos.Web.Common;
 using Vidos.Web.Common.Constants;
 
 namespace Vidos.Services.Models.Order.ViewModels

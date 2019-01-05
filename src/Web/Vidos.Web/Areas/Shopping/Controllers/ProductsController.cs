@@ -2,13 +2,11 @@
 using System.Threading.Tasks;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Models.Product.ViewModels;
-using Vidos.Web.Controllers;
 using X.PagedList;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
 {
-    [Area("Shopping")]
-    public class ProductsController : BaseController
+    public class ProductsController : BaseShoppingController
     {
         private readonly IProductsService _productsService;
 

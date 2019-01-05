@@ -53,5 +53,19 @@ namespace Vidos.Services.DataServices
 
             await this._ordeRepository.SaveChangesAsync();
         }
+
+        public async Task MarkOrderAsShipped(string orderId)
+        {
+            var order = this._ordeRepository.FindById(orderId);
+
+            if (order == null)
+            {
+                return;
+            }
+
+            order.IsShipped = true;
+
+            await this._ordeRepository.SaveChangesAsync();
+        }
     }
 }

@@ -17,10 +17,7 @@ namespace Vidos.Web.Areas.Administration.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
-        {
-            return View();
-        }
+        public IActionResult Add() => View();
 
         [HttpPost]
         public async Task<IActionResult> Add(ProductsCreateViewModel productModel)

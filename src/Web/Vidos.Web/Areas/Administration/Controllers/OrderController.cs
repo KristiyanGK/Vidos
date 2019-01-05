@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
@@ -17,19 +18,13 @@ namespace Vidos.Web.Areas.Administration.Controllers
         }
 
         public IActionResult All() =>
-            View(this._orderService.All().To<AllOrdersViewModel>());
+            View(this._orderService.All().To<AllOrdersViewModel>().ToList());
 
         [HttpPost]
         public IActionResult MarkAsShipped(string orderId)
         {
-            Order order = this._orderService.GetOrderById(orderId);
+            this._orderService.MarkOrderAsShipped(orderId);
             
-            if (order != null)
-            {
-                order.IsShipped = true;
-                this._orderService.SaveOrderAsync(order);
-            }
-
             return RedirectToAction(nameof(All));
         }
 

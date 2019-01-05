@@ -15,8 +15,7 @@ using Order = Vidos.Data.Models.Order;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
 {
-    [Area("Shopping")]
-    public class OrderController : BaseController
+    public class OrderController : BaseShoppingController
     {
         private readonly IOrderService _orderService;
         private readonly ICartService _cartService;
@@ -32,19 +31,11 @@ namespace Vidos.Web.Areas.Shopping.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Payment() => View();
-
-        [HttpPost]
-        public IActionResult Payment(string temp)
-        {
-            return View();
-        }
-
         [HttpGet]
         public IActionResult Checkout() => View();
 
         [HttpPost]
-        public IActionResult Checkout(OrderCheckoutViewModel orderCheckoutModel)
+        public async Task<IActionResult> Checkout(OrderCheckoutViewModel orderCheckoutModel)
         {
             if (!this._cartService.Items.Any())
             {
@@ -53,15 +44,28 @@ namespace Vidos.Web.Areas.Shopping.Controllers
 
             if (ModelState.IsValid)
             {
+                if (this.User.IsInRole(Constants.GuestRole))
+                {
+                    var user = await this._userManager.GetUserAsync(User);
+
+                    user.FirstName = orderCheckoutModel.FirstName;
+                    user.LastName = orderCheckoutModel.LastName;
+                    user.Email = orderCheckoutModel.Email;
+
+                    await this._userManager.UpdateAsync(user);
+                }
+
                 if (orderCheckoutModel.PaymentMethod == PaymentMethod.Cash)
                 {
+                    this.TempData["OrderVM"] = JsonConvert.SerializeObject(orderCheckoutModel);
+
                     return RedirectToAction(nameof(CompleteOrder), orderCheckoutModel);
                 }
                 else if (orderCheckoutModel.PaymentMethod == PaymentMethod.Card)
                 {
                     this.TempData["OrderVM"] = JsonConvert.SerializeObject(orderCheckoutModel);
 
-                    return View("Payment");
+                    return RedirectToAction("Payment", "Payment");
                 }
                 else
                 {
@@ -72,57 +76,11 @@ namespace Vidos.Web.Areas.Shopping.Controllers
             return View(orderCheckoutModel);
         }
 
-        public IActionResult Charge(string stripeToken)
+        public async Task<IActionResult> CompleteOrder()
         {
-            OrderCheckoutViewModel orderCheckoutViewModel = JsonConvert.DeserializeObject<OrderCheckoutViewModel>(this.TempData["OrderVM"].ToString());
+            OrderCheckoutViewModel orderCheckoutModel = JsonConvert.DeserializeObject<OrderCheckoutViewModel>(this.TempData["OrderVM"].ToString());
 
-            var customers = new CustomerService();
-            var charges = new ChargeService();
-
-            string email;
-
-            if (User.IsInRole(Constants.GuestRole))
-            {
-                email = orderCheckoutViewModel.Email;
-            }
-            else
-            {
-                email = this._userManager.GetUserName(User);
-            }
-
-            var customer = customers.Create(new CustomerCreateOptions
-            {
-                Email = email,
-                SourceToken = stripeToken
-            });
-
-            var amount = (long)Math.Ceiling(this._cartService.TotalValue() * Constants.CentsInLev);
-
-            var charge = charges.Create(new ChargeCreateOptions
-            {
-                Amount = amount,
-                Description = Constants.ChargeDescription,
-                Currency = Constants.CurrancyType,
-                CustomerId = customer.Id
-            });
-
-            return RedirectToAction(nameof(CompleteOrder), orderCheckoutViewModel);
-        }
-
-        public async Task<IActionResult> CompleteOrder(OrderCheckoutViewModel orderCheckoutModel)
-        {
             var order = Mapper.Map<Order>(orderCheckoutModel);
-
-            if (this.User.IsInRole(Constants.GuestRole))
-            {
-                var user = await this._userManager.GetUserAsync(User);
-
-                user.FirstName = orderCheckoutModel.FirstName;
-                user.LastName = orderCheckoutModel.LastName;
-                user.Email = orderCheckoutModel.Email;
-
-                await this._userManager.UpdateAsync(user);
-            }
 
             order.ClientId = this._userManager.GetUserId(this.User);
 

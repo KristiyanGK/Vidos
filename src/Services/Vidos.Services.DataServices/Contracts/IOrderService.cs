@@ -13,5 +13,7 @@ namespace Vidos.Services.DataServices.Contracts
         Task SaveOrderAsync(Order order);
 
         Order GetAllOrderInfoById(string id);
+
+        Task MarkOrderAsShipped(string orderId);
     }
 }

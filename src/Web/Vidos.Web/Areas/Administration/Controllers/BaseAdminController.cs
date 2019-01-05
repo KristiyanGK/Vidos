@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Vidos.Web.Common;
 using Vidos.Web.Common.Constants;
 using Vidos.Web.Controllers;
 

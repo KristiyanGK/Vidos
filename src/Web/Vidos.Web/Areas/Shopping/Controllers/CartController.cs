@@ -11,8 +11,7 @@ using Vidos.Web.Controllers;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
 {
-    [Area("Shopping")]
-    public class CartController : BaseController
+    public class CartController : BaseShoppingController
     {
         private IProductsService _productsService;
         private ICartService _cartService;

@@ -87,6 +87,8 @@ namespace Vidos.Web
             services.AddScoped<IProductsService, ProductsService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<ChargeService>();
+            services.AddScoped<CustomerService>();
 
             services.AddTransient<Seeder>();
 
