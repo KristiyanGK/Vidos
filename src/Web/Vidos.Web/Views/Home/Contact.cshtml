@@ -1,17 +1,47 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
+    <p>
+        Адрес, ВИДОС ЕООД, централен офис, магазин: Сливен, ул."Ген.Драгомиров"9Б<br/>
+        Тел.МАГАЗИН: 044 / 66 26 24, 0887 81 28 56, 0888 51 20 27<br />
+        Тел.СЕРВИЗНА БАЗА: 044 / 66 26 24, 0887 81 28 56, 0888 51 20 27<br />
+        E-mail: vidos@abv.bg<br />
+        РАБОТНО ВРЕМЕ 8.30 - 18.00 СЪБОТА 8.30 - 14.00<br />
+    </p>
 </address>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<!--The div element for the map -->
+<div id="map"></div>
+
+<br/>
+
+<div class="row">
+    <div class="col-lg-4">
+        <img class="img-fluid" src="~/images/store/Vidos_contact1.jpg" />
+    </div>
+    <div class="col-lg-4">
+        <img class="img-fluid" src="~/images/store/Vidos_contact2.jpg" />
+    </div>
+    <div class="col-lg-4">
+        <img class="img-fluid" src="~/images/store/Vidos_contact3.jpg" />
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function initMap() {
+            var vidos = { lat: 42.678802, lng: 26.316466 };
+            var map = new google.maps.Map(
+                document.getElementById('map'),
+                { zoom: 20, center: vidos });
+
+            var marker = new google.maps.Marker({ position: vidos, map: map });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp7RxdrTVK79AUXo7ZhNn8MC7OOt8Uvrs&callback=initMap">
+    </script>
+}

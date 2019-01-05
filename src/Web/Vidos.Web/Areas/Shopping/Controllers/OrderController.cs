@@ -96,13 +96,13 @@ namespace Vidos.Web.Areas.Shopping.Controllers
                 SourceToken = stripeToken
             });
 
-            var amount = (long)Math.Ceiling(this._cartService.TotalValue() * 100);
+            var amount = (long)Math.Ceiling(this._cartService.TotalValue() * Constants.CentsInLev);
 
             var charge = charges.Create(new ChargeCreateOptions
             {
                 Amount = amount,
-                Description = "Product bought from Vidos shop",
-                Currency = "bgn",
+                Description = Constants.ChargeDescription,
+                Currency = Constants.CurrancyType,
                 CustomerId = customer.Id
             });
 
