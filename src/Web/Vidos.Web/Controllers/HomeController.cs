@@ -1,12 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using Vidos.Services.DataServices.Contracts;
+using Vidos.Services.Mapping;
+using Vidos.Services.Models.Product.ViewModels;
+using Vidos.Web.Common.Constants;
+using X.PagedList;
 
 namespace Vidos.Web.Controllers
 {
     public class HomeController : BaseController
     {
-        public IActionResult Index()
+        private readonly IProductsService _productsService;
+
+        public HomeController(IProductsService productsService)
         {
-            return View();
+            this._productsService = productsService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var mostBoughtProducts = await _productsService
+                .MostBoughtProducts(Constants.HomeIndexProductCount)
+                .To<ListProductsViewModel>()
+                .ToListAsync();
+
+            return View(mostBoughtProducts);
         }
 
         public IActionResult Privacy()

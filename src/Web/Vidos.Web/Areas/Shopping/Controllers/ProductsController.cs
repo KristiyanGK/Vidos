@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using AutoMapper;
 using Vidos.Services.DataServices.Contracts;
+using Vidos.Services.Mapping;
 using Vidos.Services.Models.Product.ViewModels;
+using Vidos.Web.Common.Exceptions;
 using X.PagedList;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
@@ -20,11 +23,14 @@ namespace Vidos.Web.Areas.Shopping.Controllers
 
         public async Task<IActionResult> AllPartial(int? pageNumber, string brandName, string priceSort, int productsOnPage)
         {
-            var products = await this._productsService.GetAllAsync(brandName, priceSort);
+            var products = await this._productsService
+                .GetAllAsync(brandName, priceSort);
+
+            var productModel = products.To<ListProductsViewModel>();
 
             var page = pageNumber ?? 1;
 
-            var pagedList = products.ToPagedList(page, productsOnPage);
+            var pagedList = productModel.ToPagedList(page, productsOnPage);
 
             return PartialView("_AllProductsPartial", pagedList);
         }
@@ -34,9 +40,14 @@ namespace Vidos.Web.Areas.Shopping.Controllers
         {
             ProductDetailsViewModel product;
 
-            product = this._productsService.GetProductDetailsViewModelById(id); 
-
-            //TODO: CHECK if exists and make not found page
+            try
+            {
+                product = Mapper.Map<ProductDetailsViewModel>(this._productsService.GetProductById(id));
+            }
+            catch (ProductNotFoundException)
+            {
+                return View("ProductNotFound");
+            }
 
             product.ReturnUrl = "/Shopping" + query;
 

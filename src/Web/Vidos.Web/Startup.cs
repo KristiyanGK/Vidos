@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,7 +18,6 @@ using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Mapping;
 using Vidos.Services.Models.Order.ViewModels;
 using Vidos.Services.Models.Product.ViewModels;
-using Vidos.Web.Common;
 using Vidos.Web.Common.Constants;
 using Vidos.Web.Common.Seeder;
 using Vidos.Web.Filters.AuthorizationFilters;
@@ -40,7 +38,7 @@ namespace Vidos.Web
         public void ConfigureServices(IServiceCollection services)
         {
             AutoMapperConfig.RegisterMappings(
-                typeof(AllProductsViewModel).Assembly,
+                typeof(ListProductsViewModel).Assembly,
                 typeof(ProductDetailsViewModel).Assembly,
                 typeof(ProductsCreateViewModel).Assembly,
                 typeof(OrderCheckoutViewModel).Assembly,

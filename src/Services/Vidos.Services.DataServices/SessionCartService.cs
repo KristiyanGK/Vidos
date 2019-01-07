@@ -5,6 +5,7 @@ using System;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.DataServices.Extensions;
+using Vidos.Web.Common.Constants;
 
 namespace Vidos.Services.DataServices
 {
@@ -15,7 +16,8 @@ namespace Vidos.Services.DataServices
             ISession session = services.GetRequiredService<IHttpContextAccessor>()
                 ?.HttpContext.Session;
 
-            SessionCartService cart = session.GetJson<SessionCartService>("Cart")
+            SessionCartService cart = 
+                session.GetJson<SessionCartService>(Constants.SessionCartKey)
                                       ?? new SessionCartService();
 
             cart.Session = session;
@@ -26,20 +28,21 @@ namespace Vidos.Services.DataServices
         [JsonIgnore]
         public ISession Session { get; set; }
 
-        public override void AddItem(AirConditioner product, int quantity)
+        public override CartItem AddItem(AirConditioner product, int quantity)
         {
-            base.AddItem(product, quantity);
-            Session.SetJson("Cart", this);
+            var item = base.AddItem(product, quantity);
+            Session.SetJson(Constants.SessionCartKey, this);
+            return item;
         }
         public override void RemoveById(string productId)
         {
             base.RemoveById(productId);
-            Session.SetJson("Cart", this);
+            Session.SetJson(Constants.SessionCartKey, this);
         }
         public override void Clear()
         {
             base.Clear();
-            Session.Remove("Cart");
+            Session.Remove(Constants.SessionCartKey);
         }
     }
 }

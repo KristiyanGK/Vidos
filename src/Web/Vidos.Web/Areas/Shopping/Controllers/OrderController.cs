@@ -1,16 +1,13 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Stripe;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Models.Order.ViewModels;
 using Vidos.Web.Common.Constants;
-using Vidos.Web.Controllers;
 using Order = Vidos.Data.Models.Order;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
@@ -59,7 +56,7 @@ namespace Vidos.Web.Areas.Shopping.Controllers
                 {
                     this.TempData["OrderVM"] = JsonConvert.SerializeObject(orderCheckoutModel);
 
-                    return RedirectToAction(nameof(CompleteOrder), orderCheckoutModel);
+                    return RedirectToAction(nameof(CompleteOrder));
                 }
                 else if (orderCheckoutModel.PaymentMethod == PaymentMethod.Card)
                 {

@@ -118,7 +118,8 @@ namespace Vidos.Web.Common.Seeder
             {
                 AirConditioner ac = new AirConditioner
                 {
-                    Price = 100M + i,
+                    TimesBought = 2 * (i + 1),
+                    Price = 1000M + i,
                     Name = "SeededAC" + i,
                     Brand = brands[i % brands.Length],
                     Description = string.Concat("Description ", "This is a continuation " + new string('*', i)),

@@ -9,6 +9,8 @@ namespace Vidos.Data.Models
             this.Reviews = new HashSet<Review>();
         }
 
+        public int TimesBought { get; set; }
+
         public decimal Price { get; set; }
 
         public string Name { get; set; }

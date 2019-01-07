@@ -1,16 +1,14 @@
 ﻿using AutoMapper;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.DataServices.Extensions;
 using Vidos.Services.Mapping;
 using Vidos.Services.Models.Product.ViewModels;
-using Vidos.Web.Common.Constants;
 using Vidos.Web.Common.Exceptions;
 
 namespace Vidos.Services.DataServices
@@ -25,35 +23,17 @@ namespace Vidos.Services.DataServices
             this._repo = repo;
         }
 
-
-        public async Task<IEnumerable<AllProductsViewModel>> GetAllAsync()
+        /*
+         * PriceSort -> 0 for none, 1 for ascending, 2 for descending
+         */
+        public async Task<IQueryable<AirConditioner>> GetAllAsync(string brandName, string priceSort)
         {
-            var list = await this._repo.All()
+            var list = await Task.Run(() => 
+                this._repo.All()
                 .Include(p => p.Brand)
-                .To<AllProductsViewModel>()
-                .ToListAsync();
-
-            return list;
-        }
-
-        public async Task<IEnumerable<AllProductsViewModel>> GetAllAsync(string brandName, string priceSort)
-        {
-            var list = await this._repo.All()
-                .Include(p => p.Brand)
-                .ApplyFilters(brandName, priceSort)
-                .To<AllProductsViewModel>()
-                .ToListAsync();
+                .ApplyFilters(brandName, priceSort));
             
             return list;
-        }
-
-        public ProductDetailsViewModel GetProductDetailsViewModelById(string id)
-        {
-            var product = this.GetProductById(id);
-
-            var productModel = Mapper.Map<ProductDetailsViewModel>(product);
-
-            return productModel;
         }
 
         public AirConditioner GetProductById(string id)
@@ -68,11 +48,21 @@ namespace Vidos.Services.DataServices
             return product;
         }
 
-        public async Task AddAsync(AirConditioner product)
+        public async Task<AirConditioner> AddAsync(AirConditioner product)
         {
-            await this._repo.AddAsync(product);
+            var newlyAddedProduct = await this._repo.AddAsync(product);
 
             await this._repo.SaveChangesAsync();
+
+            return newlyAddedProduct;
+        }
+
+        /*returns the products with the higehst TimesBought*/
+        public IQueryable<AirConditioner> MostBoughtProducts(int count)
+        {
+            var result = this._repo.All().OrderBy(p => p.TimesBought).Take(count);
+
+            return result;
         }
     }
 }

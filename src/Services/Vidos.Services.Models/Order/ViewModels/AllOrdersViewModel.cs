@@ -15,6 +15,7 @@ namespace Vidos.Services.Models.Order.ViewModels
         public string ClientName { get; set; }
 
         [DataType(DataType.DateTime)]
+        [Display(Name = DisplayNames.PurchaseDate)]
         public DateTime PurchaseDate { get; set; }
 
         [Display(Name = DisplayNames.Line1)]

@@ -9,7 +9,7 @@ namespace Vidos.Data.Common
     {
         IQueryable<TEntity> All();
 
-        Task AddAsync(TEntity entity);
+        Task<TEntity> AddAsync(TEntity entity);
 
         void Delete(TEntity entity);
 

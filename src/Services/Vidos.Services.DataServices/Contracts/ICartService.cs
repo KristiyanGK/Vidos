@@ -6,7 +6,7 @@ namespace Vidos.Services.DataServices.Contracts
 {
     public interface ICartService
     {
-        void AddItem(AirConditioner product, int quantity);
+        CartItem AddItem(AirConditioner product, int quantity);
 
         void RemoveById(string productId);
 

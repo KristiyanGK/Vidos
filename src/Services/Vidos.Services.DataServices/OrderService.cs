@@ -42,7 +42,7 @@ namespace Vidos.Services.DataServices
             return this._ordeRepository.All();
         }
 
-        public async Task SaveOrderAsync(Order order)
+        public async Task<Order> SaveOrderAsync(Order order)
         {
             this._ordeRepository.AttachRange(order.Items.Select(l => l.Product));
 
@@ -52,20 +52,24 @@ namespace Vidos.Services.DataServices
             }
 
             await this._ordeRepository.SaveChangesAsync();
+
+            return order;
         }
 
-        public async Task MarkOrderAsShipped(string orderId)
+        public async Task<Order> MarkOrderAsShippedAsync(string orderId)
         {
             var order = this._ordeRepository.FindById(orderId);
 
             if (order == null)
             {
-                return;
+                return null;
             }
 
             order.IsShipped = true;
 
             await this._ordeRepository.SaveChangesAsync();
+
+            return order;
         }
     }
 }

@@ -22,6 +22,14 @@ namespace Vidos.Web.Common.Constants
 
         public const string ChargeDescription = "Product bought from Vidos shop";
 
+        public const string Daikin = "Daikin";
+
+        public const string Fujitsu = "Fujitsu";
+
+        public const string Mitsubishi = "Mitsubishi";
+
+        public const string SessionCartKey = "Cart";
+
         public const int CentsInLev = 100;
 
         public const int MinFirstNameLength = 3;
@@ -35,6 +43,10 @@ namespace Vidos.Web.Common.Constants
 
         public const int ProductsPerRow = 3;
         public const int MaxItemsPerRow = 12;
+
+        public const int HomeIndexProductCount = 6;
+
+        public const int DescriptionMaxLength = 30;
 
         public static TimeSpan SessionIdleTimeoutTimespan = TimeSpan.FromHours(4);
     }

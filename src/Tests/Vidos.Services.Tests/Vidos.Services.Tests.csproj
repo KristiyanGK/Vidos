@@ -16,4 +16,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\Vidos.Data.Common\Vidos.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Data\Vidos.Data.Models\Vidos.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Services\Vidos.Services.DataServices\Vidos.Services.DataServices.csproj" />
+  </ItemGroup>
+
 </Project>

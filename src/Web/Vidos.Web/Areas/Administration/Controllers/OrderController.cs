@@ -23,7 +23,7 @@ namespace Vidos.Web.Areas.Administration.Controllers
         [HttpPost]
         public IActionResult MarkAsShipped(string orderId)
         {
-            this._orderService.MarkOrderAsShipped(orderId);
+            this._orderService.MarkOrderAsShippedAsync(orderId);
             
             return RedirectToAction(nameof(All));
         }

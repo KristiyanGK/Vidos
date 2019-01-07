@@ -19,9 +19,9 @@ namespace Vidos.Data
             this._dbSet = this._context.Set<TEntity>();
         }
 
-        public Task AddAsync(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            return this._dbSet.AddAsync(entity);
+            return (await this._dbSet.AddAsync(entity)).Entity;
         }
 
         public IQueryable<TEntity> All()

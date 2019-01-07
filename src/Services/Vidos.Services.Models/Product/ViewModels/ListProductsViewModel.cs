@@ -1,12 +1,11 @@
 ﻿using Vidos.Data.Models;
 using Vidos.Services.Mapping;
+using Vidos.Web.Common.Constants;
 
 namespace Vidos.Services.Models.Product.ViewModels
 {
-    public class AllProductsViewModel : IMapFrom<AirConditioner>
+    public class ListProductsViewModel : IMapFrom<AirConditioner>
     {
-        private const int DescriptionMaxLength = 30;
-
         private string description;
 
         public string Id { get; set; }
@@ -23,9 +22,9 @@ namespace Vidos.Services.Models.Product.ViewModels
 
             set
             {
-                if (value.Length >= DescriptionMaxLength)
+                if (value.Length >= Constants.DescriptionMaxLength)
                 {
-                    value = value.Substring(0, DescriptionMaxLength) + "...";
+                    value = value.Substring(0, Constants.DescriptionMaxLength) + "...";
                 }
 
                 this.description = value;

@@ -10,10 +10,10 @@ namespace Vidos.Services.DataServices.Contracts
 
         IQueryable<Order> All();
 
-        Task SaveOrderAsync(Order order);
+        Task<Order> SaveOrderAsync(Order order);
 
         Order GetAllOrderInfoById(string id);
 
-        Task MarkOrderAsShipped(string orderId);
+        Task<Order> MarkOrderAsShippedAsync(string orderId);
     }
 }
