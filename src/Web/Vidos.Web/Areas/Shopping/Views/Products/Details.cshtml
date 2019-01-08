@@ -1,9 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
+@using Microsoft.AspNetCore.Identity
+@using Vidos.Data.Models
+@using Vidos.Web.Common.Constants
 @model Vidos.Services.Models.Product.ViewModels.ProductDetailsViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
+
+@inject UserManager<VidosUser> UserManager
 
 <div class="section">
     <div class="container">
@@ -20,7 +25,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="product-image-large">
-                    <img src="~/@Model.ImagePath" alt="@Model.Name">
+                    <img class="img-fluid" src="~/@Model.ImagePath" alt="@Model.Name">
                 </div>
             </div>
 
@@ -110,8 +115,24 @@
                         </a>
                     </div>
                     <div id="reviews" class="collapse show">
+                        @if (!User.IsInRole(Constants.GuestRole))
+                        {
+                            <div class="d-flex justify-content-center">
+                                <a class="btn btn-primary" href="@Url.Action("Create", "Review", new {area = Constants.ShoppingArea, productId = Model.Id})">
+                                    Добави Отзив
+                                </a>
+                            </div>    
+                            <hr/>    
+                        }
+                        
                         <div class="card-body">
-                            TODO: Add reviews
+                            @foreach (var review in @Model.Reviews)
+                            {
+                                <h3>@review.Rating/@Constants.MaxRating</h3>
+                                <p>@review.Body</p>
+                                <h3>@review.Author</h3>
+                                <hr/>
+                            }
                         </div>
                     </div>
                 </div>

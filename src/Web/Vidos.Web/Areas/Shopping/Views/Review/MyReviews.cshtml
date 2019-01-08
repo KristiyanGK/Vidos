@@ -1,0 +1,44 @@
+﻿@using Vidos.Web.Common.Constants
+@model IEnumerable<Vidos.Services.Models.Reviews.ViewModels.ListReviewsViewModel>
+
+@{
+    this.ViewData["Title"] = "My Reviews";
+}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                <a class="btn-link" href="@Url.Action("Details", "Products", new { area= Constants.ShoppingArea, id = item.ProductId })">
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </a>
+            </td>
+            <td>
+                @Html.ActionLink("Промени", "Edit", new { id = item.Id  })
+                @Html.ActionLink("Изтрий", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

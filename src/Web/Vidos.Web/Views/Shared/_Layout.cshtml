@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" asp-href-include="~/lib/fontawesome/css/*.css" />
         <link rel="stylesheet" href="~/lib/datatables/datatables.css" />
-        <link rel="stylesheet" href="~/css/site.css"></link>
+        <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
@@ -71,6 +71,17 @@
                                 }
                             </div>
                         </li>
+                        @if (this.User.Identity.IsAuthenticated && !this.User.IsInRole(Constants.GuestRole))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                    Отзиви
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="Shopping" asp-controller="Review" asp-action="MyReviews">Моите Отзиви</a>
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -116,7 +127,6 @@
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-    
     
 
     @RenderSection("Scripts", false)

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Vidos.Web.Common.Constants;
 using Vidos.Web.Controllers;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
 {
-    [Area("Shopping")]
+    [Area(Constants.ShoppingArea)]
     public class BaseShoppingController : BaseController
     {
     }

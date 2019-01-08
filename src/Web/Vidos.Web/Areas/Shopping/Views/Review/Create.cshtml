@@ -1,0 +1,26 @@
+﻿@model Vidos.Services.Models.Reviews.ViewModels.AddReviewViewModel
+
+@{
+    ViewData["Title"] = "Add Review";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-area="Shopping" asp-controller="Review" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Rating"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Body"></label>
+                <textarea asp-for="Body" class="form-control"></textarea>              
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Създай" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

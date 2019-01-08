@@ -38,7 +38,12 @@ namespace Vidos.Services.DataServices
 
         public AirConditioner GetProductById(string id)
         {
-            var product = this._repo.All().Include(p => p.Brand).FirstOrDefault(p => p.Id == id);
+            var product = this._repo
+                .All()
+                .Include(p => p.Brand)
+                .Include(p => p.Reviews)
+                .ThenInclude(r => r.Client)
+                .FirstOrDefault(p => p.Id == id);
 
             if (product == null)
             {

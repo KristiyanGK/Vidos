@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
+using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using Vidos.Data;
 using Vidos.Data.Models;
@@ -62,6 +63,8 @@ namespace Vidos.Web.Common.Seeder
 
         public void SeedProducts()
         {
+            var admin = this._userManager.FindByEmailAsync(Constants.Constants.AdministratorEmail).Result;
+
             if (_context.AirConditioners.Count() != 0)
             {
                 return;
@@ -128,8 +131,17 @@ namespace Vidos.Web.Common.Seeder
                     Heating = 96D + i,
                     CoolingConsumption = 98D + i,
                     HeatingConsumption = 99D + i,
-                    ImagePath = imagePaths[i % imagePaths.Length]
+                    ImagePath = imagePaths[i % imagePaths.Length],
                 };
+
+                Random rnd = new Random();
+
+                ac.Reviews.Add(new Review
+                {
+                    Body = "This is a sample admin review for product with id " + ac.Id,
+                    ClientId = admin.Id,
+                    Rating = rnd.Next(0, 5)
+                });
 
                 _context.AirConditioners.Add(ac);
             }

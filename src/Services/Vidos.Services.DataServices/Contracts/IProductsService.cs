@@ -7,8 +7,11 @@ namespace Vidos.Services.DataServices.Contracts
     public interface IProductsService
     {
         Task<IQueryable<AirConditioner>> GetAllAsync(string brandName, string priceSort);
+
         AirConditioner GetProductById(string id);
+
         Task<AirConditioner> AddAsync(AirConditioner product);
-        IQueryable<AirConditioner> MostBoughtProducts(int count);
+
+        IQueryable<AirConditioner> MostBoughtProducts(int count);  
     }
 }

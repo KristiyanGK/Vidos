@@ -12,6 +12,8 @@ namespace Vidos.Web.Common.Constants
 
         public const string AdministratorRole = "Admin";
 
+        public const string AdminOrUserRole = AdministratorRole + ", " + UserRole;
+
         public const string UserRole = "User";
 
         public const string GuestRole = "Guest";
@@ -30,6 +32,8 @@ namespace Vidos.Web.Common.Constants
 
         public const string SessionCartKey = "Cart";
 
+        public const string ShoppingArea = "Shopping";
+
         public const int CentsInLev = 100;
 
         public const int MinFirstNameLength = 3;
@@ -47,6 +51,8 @@ namespace Vidos.Web.Common.Constants
         public const int HomeIndexProductCount = 6;
 
         public const int DescriptionMaxLength = 30;
+
+        public const int MaxRating = 5;
 
         public static TimeSpan SessionIdleTimeoutTimespan = TimeSpan.FromHours(4);
     }

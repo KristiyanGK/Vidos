@@ -18,6 +18,7 @@ using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Mapping;
 using Vidos.Services.Models.Order.ViewModels;
 using Vidos.Services.Models.Product.ViewModels;
+using Vidos.Services.Models.Reviews.ViewModels;
 using Vidos.Web.Common.Constants;
 using Vidos.Web.Common.Seeder;
 using Vidos.Web.Filters.AuthorizationFilters;
@@ -37,12 +38,17 @@ namespace Vidos.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //TODO Add validation for review Models
             AutoMapperConfig.RegisterMappings(
                 typeof(ListProductsViewModel).Assembly,
                 typeof(ProductDetailsViewModel).Assembly,
                 typeof(ProductsCreateViewModel).Assembly,
                 typeof(OrderCheckoutViewModel).Assembly,
-                typeof(MyOrdersViewModel).Assembly
+                typeof(MyOrdersViewModel).Assembly,
+                typeof(ReviewsViewModel).Assembly,
+                typeof(AddReviewViewModel).Assembly,
+                typeof(ListReviewsViewModel).Assembly,
+                typeof(EditReviewViewModel).Assembly
             );
 
             StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
@@ -85,6 +91,7 @@ namespace Vidos.Web
             services.AddScoped<IProductsService, ProductsService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<IReviewService, Services.DataServices.ReviewService>();
             services.AddScoped<ChargeService>();
             services.AddScoped<CustomerService>();
 
@@ -111,9 +118,9 @@ namespace Vidos.Web
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
 
-                seeder.SeedProducts();
                 seeder.SeedRoles();
                 seeder.SeedAdmin();
+                seeder.SeedProducts();
             }
             else
             {

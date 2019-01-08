@@ -1,6 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using Vidos.Data.Models;
 using Vidos.Services.Mapping;
+using Vidos.Services.Models.Reviews.ViewModels;
 
 namespace Vidos.Services.Models.Product.ViewModels
 {
@@ -30,11 +32,15 @@ namespace Vidos.Services.Models.Product.ViewModels
 
         public string ReturnUrl { get; set; }
 
+        public IEnumerable<ReviewsViewModel> Reviews { get; set; }
+
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<AirConditioner, ProductDetailsViewModel>()
                 .ForMember(dest => dest.BrandName,
-                    opt => opt.MapFrom(src => src.Brand.Name));
+                    opt => opt.MapFrom(src => src.Brand.Name))
+                .ForMember(dest => dest.Reviews,
+                    opt => opt.MapFrom(src => src.Reviews));
         }
     }
 }
