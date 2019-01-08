@@ -91,5 +91,17 @@ namespace Vidos.Services.DataServices
         {
             return this._reviewRepository.FindById(reviewId);
         }
+
+        public bool IsReviewOwnedByUser(string userId, string reviewId)
+        {
+            var reviews = this._reviewRepository.FindById(reviewId);
+
+            if (reviews == null)
+            {
+                return false;
+            }
+
+            return reviews.ClientId == userId;
+        }
     }
 }

@@ -17,5 +17,7 @@ namespace Vidos.Services.DataServices.Contracts
         IQueryable<Review> GetUserReviewsById(string userId);
 
         Review GetReviewById(string reviewId);
+
+        bool IsReviewOwnedByUser(string userId, string reviewId);
     }
 }

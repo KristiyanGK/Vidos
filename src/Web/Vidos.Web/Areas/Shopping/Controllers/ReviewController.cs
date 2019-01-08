@@ -4,11 +4,13 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Mapping;
 using Vidos.Services.Models.Reviews.ViewModels;
 using Vidos.Web.Common.Constants;
+using Vidos.Web.Filters.ActionFilters;
 using X.PagedList;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
@@ -26,7 +28,7 @@ namespace Vidos.Web.Areas.Shopping.Controllers
             this._userManager = userManager;
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Create(string productId)
         {
             string currUserId = string.Empty;
@@ -86,6 +88,7 @@ namespace Vidos.Web.Areas.Shopping.Controllers
         }
 
         [HttpGet]
+        [TypeFilter(typeof(EnsureReviewsAreOwned))]
         public async Task<IActionResult> Edit(string id)
         {
             EditReviewViewModel reviewModel = null;
@@ -101,6 +104,7 @@ namespace Vidos.Web.Areas.Shopping.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(EnsureReviewsAreOwned))]
         public async Task<IActionResult> Edit(EditReviewViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -118,6 +122,7 @@ namespace Vidos.Web.Areas.Shopping.Controllers
         }
 
         [HttpGet]
+        [TypeFilter(typeof(EnsureReviewsAreOwned))]
         public async Task<IActionResult> Delete(string id)
         {
             EditReviewViewModel reviewModel = null;
@@ -132,6 +137,7 @@ namespace Vidos.Web.Areas.Shopping.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(EnsureReviewsAreOwned))]
         public async Task<IActionResult> Delete(EditReviewViewModel viewModel)
         {
             if (!ModelState.IsValid)
