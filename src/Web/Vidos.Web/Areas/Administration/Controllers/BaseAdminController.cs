@@ -5,7 +5,7 @@ using Vidos.Web.Controllers;
 
 namespace Vidos.Web.Areas.Administration.Controllers
 {
-    [Area("administration")]
+    [Area(Constants.AdminArea)]
     [Authorize(Roles = Constants.AdministratorRole)]
     public class BaseAdminController : BaseController
     {

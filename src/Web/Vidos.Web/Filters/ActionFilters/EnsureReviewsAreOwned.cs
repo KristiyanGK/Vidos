@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Rewrite.Internal.UrlActions;
-using Stripe;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System.Threading.Tasks;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Models.Reviews.ViewModels;

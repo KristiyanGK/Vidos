@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Vidos.Web.Common.Constants
 {
@@ -23,6 +24,8 @@ namespace Vidos.Web.Common.Constants
         public const string CurrancyType = "bgn";
 
         public const string ChargeDescription = "Product bought from Vidos shop";
+
+        public const string AdminArea = "Administration";
 
         public const string Daikin = "Daikin";
 
@@ -53,6 +56,12 @@ namespace Vidos.Web.Common.Constants
         public const int DescriptionMaxLength = 30;
 
         public const int MaxRating = 5;
+
+        public const int MinRating = 1;
+
+        public const int ReviewBodyMaxSize = 500;
+
+        public const int ReviewBodyMinSize = 6;
 
         public static TimeSpan SessionIdleTimeoutTimespan = TimeSpan.FromHours(4);
     }

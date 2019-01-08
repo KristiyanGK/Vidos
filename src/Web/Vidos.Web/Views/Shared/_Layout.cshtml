@@ -65,10 +65,6 @@
                             </a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item">Моите поръчки</a>
-                                @if (this.User.Identity.IsAuthenticated && this.User.IsInRole(Constants.AdministratorRole))
-                                {
-                                    <a class="dropdown-item" asp-area="Administration" asp-controller="Order" asp-action="All">Всички поръчки</a>
-                                }
                             </div>
                         </li>
                         @if (this.User.Identity.IsAuthenticated && !this.User.IsInRole(Constants.GuestRole))
@@ -81,6 +77,18 @@
                                     <a class="dropdown-item" asp-area="Shopping" asp-controller="Review" asp-action="MyReviews">Моите Отзиви</a>
                                 </div>
                             </li>
+                        }
+                        @if (this.User.Identity.IsAuthenticated && this.User.IsInRole(Constants.AdministratorRole))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                    Администрация
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="Administration" asp-controller="Order" asp-action="All">Всички поръчки</a>
+                                    <a class="dropdown-item" asp-area="Administration" asp-controller="Products" asp-action="Create">Създай нов продукт</a>
+                                </div>
+                            </li>               
                         }
                     </ul>
                 </div>

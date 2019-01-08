@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Vidos.Data.Models;
+using Vidos.Services.Models.Product.ViewModels;
 
 namespace Vidos.Services.DataServices.Contracts
 {
@@ -10,7 +11,7 @@ namespace Vidos.Services.DataServices.Contracts
 
         AirConditioner GetProductById(string id);
 
-        Task<AirConditioner> AddAsync(AirConditioner product);
+        Task<AirConditioner> AddAsync(ProductsCreateViewModel productModel);
 
         IQueryable<AirConditioner> MostBoughtProducts(int count);  
     }

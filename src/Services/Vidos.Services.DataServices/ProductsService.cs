@@ -1,13 +1,11 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.DataServices.Extensions;
-using Vidos.Services.Mapping;
 using Vidos.Services.Models.Product.ViewModels;
 using Vidos.Web.Common.Exceptions;
 
@@ -16,11 +14,14 @@ namespace Vidos.Services.DataServices
     public class ProductsService : IProductsService
     {
         private readonly IRepository<AirConditioner> _repo;
+        private readonly IBrandService _brandService;
 
         public ProductsService(
-            IRepository<AirConditioner> repo)
+            IRepository<AirConditioner> repo,
+            IBrandService brandService)
         {
             this._repo = repo;
+            this._brandService = brandService;
         }
 
         /*
@@ -53,8 +54,21 @@ namespace Vidos.Services.DataServices
             return product;
         }
 
-        public async Task<AirConditioner> AddAsync(AirConditioner product)
+        public async Task<AirConditioner> AddAsync(ProductsCreateViewModel productModel)
         {
+            var brandName = productModel.BrandName;
+
+            var brand = await this._brandService.GetBrandByNameAsync(brandName);
+
+            if (brand == null)
+            {
+                return null;
+            }
+
+            var product = Mapper.Map<AirConditioner>(productModel);
+
+            product.BrandId = brand.Id;
+
             var newlyAddedProduct = await this._repo.AddAsync(product);
 
             await this._repo.SaveChangesAsync();

@@ -62,7 +62,7 @@ namespace Vidos.Services.Tests.ServicesTests
             repo.Setup(r => r.All())
                 .Returns(sampleProducts.AsQueryable());
 
-            var service = new ProductsService(repo.Object);
+            var service = new ProductsService(repo.Object, null);
 
             var product = service.GetProductById(id);
 
@@ -77,7 +77,7 @@ namespace Vidos.Services.Tests.ServicesTests
             repo.Setup(r => r.All())
                 .Returns(new List<AirConditioner>().AsQueryable());
 
-            var service = new ProductsService(repo.Object);
+            var service = new ProductsService(repo.Object, null);
 
             Assert.Throws<ProductNotFoundException>(() => service.GetProductById(id));
         }
@@ -88,7 +88,7 @@ namespace Vidos.Services.Tests.ServicesTests
             repo.Setup(r => r.All())
                 .Returns(sampleProducts.AsQueryable());
 
-            var service = new ProductsService(repo.Object);
+            var service = new ProductsService(repo.Object, null);
 
             var result = await service.GetAllAsync(string.Empty, string.Empty);
 
@@ -109,7 +109,7 @@ namespace Vidos.Services.Tests.ServicesTests
             repo.Setup(r => r.All())
                 .Returns(sampleProducts.AsQueryable());
 
-            var service = new ProductsService(repo.Object);
+            var service = new ProductsService(repo.Object, null);
 
             var result = await service.GetAllAsync(brandName, priceSort);
 
@@ -147,31 +147,13 @@ namespace Vidos.Services.Tests.ServicesTests
             repo.Setup(r => r.All())
                 .Returns(sampleProducts.AsQueryable());
 
-            var service = new ProductsService(repo.Object);
+            var service = new ProductsService(repo.Object, null);
 
             var result = service.MostBoughtProducts(count);
 
             var expectedResult = sampleProducts.OrderBy(p => p.TimesBought).Take(count);
 
             Assert.Equal(expectedResult, result);
-        }
-
-        [Fact]
-        public async Task AddAsyncShouldCreateCorrectProduct()
-        {
-            var productToAdd = sampleProducts[0];
-
-            repo.Setup(r => r.AddAsync(productToAdd))
-                .Returns(Task.FromResult(productToAdd));
-
-            repo.Setup(r => r.SaveChangesAsync())
-                .Returns(Task.FromResult(1));
-
-            var service = new ProductsService(repo.Object);
-
-            var result = await service.AddAsync(productToAdd);
-
-            Assert.Equal(productToAdd, result);
         }
     }
 }

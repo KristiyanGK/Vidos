@@ -39,5 +39,31 @@
         public const string RememberMe = "Запомни ме?";
 
         public const string PaymentMethod = "Метод за плащане";
+
+        public const string Rating = "Оценка";
+
+        public const string ReviewBody = "Текст";
+
+        public const string Author = "Автор";
+
+        public const string ProductName = "Име на продукта";
+
+        public const string Price = "Цена";
+
+        public const string Brand = "Марка";
+
+        public const string ImagePath = "Път към картинката";
+
+        public const string Description = "Описание";
+
+        public const string Origin = "Произход";
+
+        public const string Cooling = "Охлаждане";
+
+        public const string Heating = "Отопление";
+
+        public const string HeatingConsumption = "Консумация при отопление";
+
+        public const string CoolingConsumption = "Консумация при охлаждане";
     }
 }
