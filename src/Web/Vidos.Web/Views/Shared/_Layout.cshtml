@@ -56,7 +56,6 @@
                             </a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-area="Shopping" asp-controller="Products" asp-action="All">Всички климатици</a>
-                                <a class="dropdown-item" asp-area="Shopping" asp-controller="Products" asp-action="All">Всички марки</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -64,7 +63,9 @@
                                 Поръчки
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item">Моите поръчки</a>
+                                <a class="dropdown-item" asp-area="ManageOrder" asp-controller="Order" asp-action="All">
+                                    Моите поръчки
+                                </a>
                             </div>
                         </li>
                         @if (this.User.Identity.IsAuthenticated && !this.User.IsInRole(Constants.GuestRole))

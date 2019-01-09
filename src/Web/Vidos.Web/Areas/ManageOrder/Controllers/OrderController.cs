@@ -7,8 +7,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
+using Vidos.Services.Mapping;
 using Vidos.Services.Models.Order.ViewModels;
 using Vidos.Web.Common.Constants;
+using X.PagedList;
 using Order = Vidos.Data.Models.Order;
 
 namespace Vidos.Web.Areas.ManageOrder.Controllers
@@ -119,6 +121,29 @@ namespace Vidos.Web.Areas.ManageOrder.Controllers
             this._cartService.Clear();
 
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> All()
+        {
+            string userId = this._userManager.GetUserId(this.User);
+
+            var orders = await (await
+                this._orderService.GetClientOrdersById(userId))
+                .To<ListOrdersClientViewModel>()
+                .ToListAsync();
+
+            return View(orders);
+        }
+
+        [HttpGet]
+        public IActionResult Details(string id)
+        {
+            var order = this._orderService.GetAllOrderInfoById(id);
+
+            var orderViewModel = Mapper.Map<OrderDetailsClientViewModel>(order);
+
+            return View(orderViewModel);
         }
     }
 }

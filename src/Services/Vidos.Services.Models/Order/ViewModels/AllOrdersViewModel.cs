@@ -1,8 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.ComponentModel.DataAnnotations;
-using AutoMapper;
 using Vidos.Services.Mapping;
-using Vidos.Web.Common;
 using Vidos.Web.Common.Constants;
 
 namespace Vidos.Services.Models.Order.ViewModels

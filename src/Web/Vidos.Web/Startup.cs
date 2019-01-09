@@ -49,7 +49,8 @@ namespace Vidos.Web
                 typeof(AddReviewViewModel).Assembly,
                 typeof(ListReviewsViewModel).Assembly,
                 typeof(EditReviewViewModel).Assembly,
-                typeof(BrandDetailsViewModel).Assembly
+                typeof(BrandDetailsViewModel).Assembly,
+                typeof(ListOrdersClientViewModel).Assembly
             );
 
             StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
@@ -76,6 +77,12 @@ namespace Vidos.Web
                 .AddEntityFrameworkStores<VidosContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI(UIFramework.Bootstrap4);
+
+            services.AddAuthentication().AddFacebook(options =>
+            {
+                options.AppId = Configuration["Authentication:Facebook:AppId"];
+                options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            });
 
             services.AddAutoMapper();
             services.AddDistributedMemoryCache();

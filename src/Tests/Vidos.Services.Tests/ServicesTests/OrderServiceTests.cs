@@ -100,7 +100,7 @@ namespace Vidos.Services.Tests.ServicesTests
 
             var service = new OrderService(this._orderRepositoryMock.Object);
 
-            var result = service.GetOrderById(orderId);
+            var result = service.GetAllOrderInfoById(orderId);
 
             var expectedResult = sampleOrders.FirstOrDefault(o => o.Id == orderId);
 

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Vidos.Data.Models;
+using Vidos.Web.Common.Constants;
 
 namespace Vidos.Web.Areas.Identity.Pages.Account
 {
@@ -45,6 +46,10 @@ namespace Vidos.Web.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+
+            public string FirstName { get; set; }
+
+            public string LastName { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -88,15 +93,24 @@ namespace Vidos.Web.Areas.Identity.Pages.Account
             }
             else
             {
+
+                Input = new InputModel();
                 // If the user does not have an account, then ask the user to create an account.
                 ReturnUrl = returnUrl;
                 LoginProvider = info.LoginProvider;
                 if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
                 {
-                    Input = new InputModel
-                    {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
-                    };
+                    Input.Email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                }
+
+                if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Name))
+                {
+                    Input.FirstName = info.Principal.FindFirstValue(ClaimTypes.Name);
+                }
+
+                if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Surname))
+                {
+                    Input.LastName = info.Principal.FindFirstValue(ClaimTypes.Surname);
                 }
                 return Page();
             }
@@ -115,8 +129,19 @@ namespace Vidos.Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new VidosUser { UserName = Input.Email, Email = Input.Email };
+                var user = new VidosUser
+                {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName
+
+                };
+
                 var result = await _userManager.CreateAsync(user);
+
+                await _userManager.AddToRoleAsync(user, Constants.UserRole);
+
                 if (result.Succeeded)
                 {
                     result = await _userManager.AddLoginAsync(user, info);

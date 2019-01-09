@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Vidos.Data.Common;
@@ -25,14 +26,6 @@ namespace Vidos.Services.DataServices
                     .Include(o => o.Items)
                     .ThenInclude(i => i.Product)
                     .FirstOrDefault(o => o.Id == id);
-
-            return order;
-        }
-
-        //Returns only the basic order information
-        public Order GetOrderById(string id)
-        {
-            var order = this._ordeRepository.FindById(id);
 
             return order;
         }
@@ -70,6 +63,20 @@ namespace Vidos.Services.DataServices
             await this._ordeRepository.SaveChangesAsync();
 
             return order;
+        }
+
+        public async Task<IQueryable<Order>> GetClientOrdersById(string clientId)
+        {
+            IQueryable<Order> orders = null;
+
+            await Task.Run(() =>
+            {
+                orders = this._ordeRepository
+                    .All()
+                    .Where(o => o.ClientId == clientId);
+            });
+
+            return orders;
         }
     }
 }
