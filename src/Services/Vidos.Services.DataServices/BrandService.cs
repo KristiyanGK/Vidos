@@ -18,7 +18,15 @@ namespace Vidos.Services.DataServices
 
         public IEnumerable<string> AllNames()
         {
-            return this._brandRepository.All().Select(b => b.Name).ToList();
+            IEnumerable<string> result =
+                this._brandRepository.All()?.Select(b => b.Name).ToList();
+
+            if (result == null)
+            {
+                return new List<string>();
+            }
+
+            return result;
         }
 
         public async Task<Brand> GetBrandByNameAsync(string name)
@@ -27,7 +35,7 @@ namespace Vidos.Services.DataServices
 
             await Task.Run(() =>
             {
-                brand = this._brandRepository.All()
+                brand = this._brandRepository.All()?
                     .FirstOrDefault(b => b.Name == name);
             });
 

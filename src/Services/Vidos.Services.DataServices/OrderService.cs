@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
@@ -72,7 +71,7 @@ namespace Vidos.Services.DataServices
             await Task.Run(() =>
             {
                 orders = this._ordeRepository
-                    .All()
+                    .All()?
                     .Where(o => o.ClientId == clientId);
             });
 

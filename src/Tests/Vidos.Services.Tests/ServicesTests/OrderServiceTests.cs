@@ -1,8 +1,6 @@
 ﻿using Moq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
@@ -19,11 +17,13 @@ namespace Vidos.Services.Tests.ServicesTests
         {
             new Order
             {
-                Id = "1"
+                Id = "1",
+                ClientId = "Client1"
             },
             new Order
             {
-                Id = "2"
+                Id = "2",
+                ClientId = "Client2"
             }
         };
 
@@ -92,17 +92,36 @@ namespace Vidos.Services.Tests.ServicesTests
         [InlineData("1")]
         [InlineData("2")]
         [InlineData("999")]
-        public void GetOrderByIdShouldReturnCorrectOrder(string orderId)
+        public void GetAllOrderInfoByIdShouldReturnCorrectOrder(string orderId)
         {
             this._orderRepositoryMock
-                .Setup(r => r.FindById(orderId))
-                .Returns(sampleOrders.FirstOrDefault(o => o.Id == orderId));
+                .Setup(r => r.All())
+                .Returns(sampleOrders.AsQueryable());
 
             var service = new OrderService(this._orderRepositoryMock.Object);
 
             var result = service.GetAllOrderInfoById(orderId);
 
             var expectedResult = sampleOrders.FirstOrDefault(o => o.Id == orderId);
+
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData("Client1")]
+        [InlineData("Client2")]
+        [InlineData("InvalidId")]
+        public async Task GetClientOrdersByIdShouldReturnCorrectOrders(string clientId)
+        {
+            this._orderRepositoryMock
+                .Setup(r => r.All())
+                .Returns(sampleOrders.AsQueryable());
+
+            var service = new OrderService(this._orderRepositoryMock.Object);
+
+            var result = (await service.GetClientOrdersById(clientId)).ToList();
+
+            var expectedResult = this.sampleOrders.Where(b => b.ClientId == clientId);
 
             Assert.Equal(expectedResult, result);
         }

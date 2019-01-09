@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Vidos.Data.Common;
 using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
@@ -63,7 +62,7 @@ namespace Vidos.Services.DataServices
 
         public bool HasUserReviewedCurrentProduct(string userId, string productId)
         {
-            var product = this._productRepository.All()
+            var product = this._productRepository.All()?
                 .Include(p => p.Reviews)
                 .ThenInclude(pr => pr.Client)
                 .FirstOrDefault(p => p.Id == productId);

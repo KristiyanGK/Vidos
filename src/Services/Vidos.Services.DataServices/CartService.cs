@@ -26,7 +26,7 @@ namespace Vidos.Services.DataServices
 
             if (item == null)
             {
-                item = new CartItem()
+                item = new CartItem
                 {
                     Product = product,
                     Quantity = quantity

@@ -56,7 +56,7 @@ namespace Vidos.Services.DataServices
 
         public async Task<AirConditioner> AddAsync(ProductsCreateViewModel productModel)
         {
-            var brandName = productModel.BrandName;
+            var brandName = productModel?.BrandName;
 
             var brand = await this._brandService.GetBrandByNameAsync(brandName);
 
@@ -95,6 +95,11 @@ namespace Vidos.Services.DataServices
         public async Task<AirConditioner> IncreaseTimesBoughtAsync(string productId, int count)
         {
             AirConditioner product = null;
+
+            if (count < 0)
+            {
+                return null;
+            }
             
             await Task.Run(() =>
             {
@@ -106,7 +111,7 @@ namespace Vidos.Services.DataServices
                 throw new ProductNotFoundException();
             }
 
-            product.TimesBought++;
+            product.TimesBought += count;
 
             await this._repo.SaveChangesAsync();
 
