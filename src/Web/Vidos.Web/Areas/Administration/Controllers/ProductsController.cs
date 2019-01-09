@@ -1,8 +1,5 @@
-﻿using System.Reflection.Metadata;
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Vidos.Data.Models;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Models.Product.ViewModels;
 using Vidos.Web.Common.Constants;

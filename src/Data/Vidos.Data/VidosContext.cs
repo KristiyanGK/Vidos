@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Vidos.Data.Models;
 
@@ -23,6 +24,10 @@ namespace Vidos.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<AirConditioner>()
+                .Property(x => x.Price)
+                .HasColumnType("decimal(19,4)");
+
             base.OnModelCreating(builder);
         }
     }

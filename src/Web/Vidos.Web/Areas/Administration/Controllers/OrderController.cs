@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Vidos.Data.Models;
+using System.Linq;
+using System.Threading.Tasks;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Mapping;
 using Vidos.Services.Models.Order.ViewModels;
@@ -21,9 +21,9 @@ namespace Vidos.Web.Areas.Administration.Controllers
             View(this._orderService.All().To<AllOrdersViewModel>().ToList());
 
         [HttpPost]
-        public IActionResult MarkAsShipped(string orderId)
+        public async Task<IActionResult> MarkAsShipped(string orderId)
         {
-            this._orderService.MarkOrderAsShippedAsync(orderId);
+            await this._orderService.MarkOrderAsShippedAsync(orderId);
             
             return RedirectToAction(nameof(All));
         }

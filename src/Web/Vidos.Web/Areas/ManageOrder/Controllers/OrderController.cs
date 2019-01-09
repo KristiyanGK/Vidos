@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -72,7 +71,8 @@ namespace Vidos.Web.Areas.ManageOrder.Controllers
 
                 if (orderCheckoutModel.PaymentMethod == PaymentMethod.Card)
                 {
-                    return RedirectToAction("Payment",
+                    return RedirectToAction(
+                        "Payment",
                         "Payment",
                         new {area = Constants.ManageOrderArea});
                 }
@@ -108,13 +108,13 @@ namespace Vidos.Web.Areas.ManageOrder.Controllers
             return RedirectToAction(nameof(Completed));
         }
 
-        public IActionResult Completed()
+        public async Task<IActionResult> Completed()
         {
             var products = this._cartService.Items;
 
             foreach (var cartItem in products)
             {
-                this._productsService
+                await this._productsService
                     .IncreaseTimesBoughtAsync(cartItem.Product.Id, cartItem.Quantity);
             }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Vidos.Data.Models
 {
@@ -33,6 +34,7 @@ namespace Vidos.Data.Models
 
         public double CoolingConsumption { get; set; } // kW
 
+        [JsonIgnore]
         public ICollection<Review> Reviews { get; set; }
     }
 }

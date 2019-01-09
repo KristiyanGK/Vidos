@@ -152,7 +152,8 @@ namespace Vidos.Data.Migrations
 
                     b.Property<string>("Origin");
 
-                    b.Property<decimal>("Price");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(19,4)");
 
                     b.Property<int>("TimesBought");
 
