@@ -9,11 +9,9 @@
     <div class="row">
         <div class="col-lg-3">
             <h1 class="my-4">Vidos</h1>
-            <div class="list-group">
-                <a href="#" class="list-group-item text-center">Mitsubishi</a>
-                <a href="#" class="list-group-item text-center">Daikin</a>
-                <a href="#" class="list-group-item text-center">Fujitsu</a>
-                <a href="#" class="list-group-item text-center">Toshiba</a>
+            <h3>Марки</h3>
+            <div id="BrandsLinks" class="list-group">
+                
             </div>
         </div>
         <!-- /.col-lg-3 -->
@@ -59,7 +57,7 @@
                                         @item.Name
                                     </a>
                                 </h4>
-                                <h5>$24.99</h5>
+                                <h5>@item.Price &#1083;&#1074</h5>
                                 <p class="card-text">@item.Description</p>
                             </div>
                         </div>
@@ -73,3 +71,7 @@
     <!-- /.row -->
 </div>
 <!-- /.container -->
+
+@section Scripts {
+    <script src="~/js/HomeIndex.js"></script>
+}

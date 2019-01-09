@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -10,21 +11,24 @@ using Vidos.Services.Models.Order.ViewModels;
 using Vidos.Web.Common.Constants;
 using Order = Vidos.Data.Models.Order;
 
-namespace Vidos.Web.Areas.Shopping.Controllers
+namespace Vidos.Web.Areas.ManageOrder.Controllers
 {
-    public class OrderController : BaseShoppingController
+    public class OrderController : BaseManagerOrderController
     {
         private readonly IOrderService _orderService;
         private readonly ICartService _cartService;
+        private readonly IProductsService _productsService;
         private readonly UserManager<VidosUser> _userManager;
 
         public OrderController(
             IOrderService orderService,
             ICartService cartService,
+            IProductsService productsService,
             UserManager<VidosUser> userManager)
         {
             _orderService = orderService;
             _cartService = cartService;
+            _productsService = productsService;
             _userManager = userManager;
         }
 
@@ -32,11 +36,15 @@ namespace Vidos.Web.Areas.Shopping.Controllers
         public IActionResult Checkout() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Checkout(OrderCheckoutViewModel orderCheckoutModel)
+        public async Task<IActionResult> Checkout(
+            OrderCheckoutViewModel orderCheckoutModel)
         {
             if (!this._cartService.Items.Any())
             {
-                ModelState.AddModelError(string.Empty, ErrorMessages.EmptyCart);
+                ModelState
+                    .AddModelError(
+                        string.Empty,
+                        ErrorMessages.EmptyCart);
             }
 
             if (ModelState.IsValid)
@@ -52,22 +60,24 @@ namespace Vidos.Web.Areas.Shopping.Controllers
                     await this._userManager.UpdateAsync(user);
                 }
 
-                if (orderCheckoutModel.PaymentMethod == PaymentMethod.Cash)
-                {
-                    this.TempData["OrderVM"] = JsonConvert.SerializeObject(orderCheckoutModel);
+                this.TempData["OrderVM"]
+                    = JsonConvert.SerializeObject(orderCheckoutModel);
 
+                if (orderCheckoutModel.PaymentMethod == PaymentMethod.Cash)
+                { 
                     return RedirectToAction(nameof(CompleteOrder));
                 }
-                else if (orderCheckoutModel.PaymentMethod == PaymentMethod.Card)
-                {
-                    this.TempData["OrderVM"] = JsonConvert.SerializeObject(orderCheckoutModel);
 
-                    return RedirectToAction("Payment", "Payment");
-                }
-                else
+                if (orderCheckoutModel.PaymentMethod == PaymentMethod.Card)
                 {
-                    ModelState.AddModelError(string.Empty, ErrorMessages.InvalidPaymentMethod);
+                    return RedirectToAction("Payment",
+                        "Payment",
+                        new {area = Constants.ManageOrderArea});
                 }
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    ErrorMessages.InvalidPaymentMethod);
             }
 
             return View(orderCheckoutModel);
@@ -75,14 +85,22 @@ namespace Vidos.Web.Areas.Shopping.Controllers
 
         public async Task<IActionResult> CompleteOrder()
         {
-            OrderCheckoutViewModel orderCheckoutModel = JsonConvert.DeserializeObject<OrderCheckoutViewModel>(this.TempData["OrderVM"].ToString());
+            Order order = null;
 
-            var order = Mapper.Map<Order>(orderCheckoutModel);
+            await Task.Run(() =>
+            {
+                OrderCheckoutViewModel orderCheckoutModel
+                    = JsonConvert
+                        .DeserializeObject<OrderCheckoutViewModel>(
+                            this.TempData["OrderVM"].ToString());
 
-            order.ClientId = this._userManager.GetUserId(this.User);
+                order = Mapper.Map<Order>(orderCheckoutModel);
 
-            order.Items = this._cartService.Items.ToArray();
+                order.ClientId = this._userManager.GetUserId(this.User);
 
+                order.Items = this._cartService.Items.ToArray();
+            });
+            
             await this._orderService.SaveOrderAsync(order);
 
             return RedirectToAction(nameof(Completed));
@@ -90,6 +108,14 @@ namespace Vidos.Web.Areas.Shopping.Controllers
 
         public IActionResult Completed()
         {
+            var products = this._cartService.Items;
+
+            foreach (var cartItem in products)
+            {
+                this._productsService
+                    .IncreaseTimesBoughtAsync(cartItem.Product.Id, cartItem.Quantity);
+            }
+
             this._cartService.Clear();
 
             return View();

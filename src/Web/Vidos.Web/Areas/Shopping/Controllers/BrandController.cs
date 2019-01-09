@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Vidos.Services.DataServices.Contracts;
-using Vidos.Web.Controllers;
+using Vidos.Services.Models.Brand.ViewModels;
+using Vidos.Web.Common.Constants;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
 {
-    public class BrandController : BaseApiController
+    [ResponseCache(Duration = Constants.BaseResponsiveCacheDuration,
+        Location = ResponseCacheLocation.Client)]
+    public class BrandController : BaseShoppingController
     {
         private readonly IBrandService _brandService;
 
@@ -15,7 +19,23 @@ namespace Vidos.Web.Areas.Shopping.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-            => new List<string>(_brandService.AllNames());
+        public IActionResult AllNames()
+            => new JsonResult(_brandService.AllNames());
+
+        [ResponseCache(Duration = Constants.BaseResponsiveCacheDuration,
+            Location = ResponseCacheLocation.Client)]
+        public async Task<IActionResult> Details(string name)
+        {
+            var brand = await this._brandService.GetBrandByNameAsync(name);
+
+            if (brand == null)
+            {
+                return View("BrandNotFound");
+            }
+
+            var viewModel = Mapper.Map<BrandDetailsViewModel>(brand);
+
+            return View(viewModel);
+        }
     }
 }

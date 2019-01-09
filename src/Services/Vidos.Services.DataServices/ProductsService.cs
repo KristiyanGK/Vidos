@@ -76,12 +76,41 @@ namespace Vidos.Services.DataServices
             return newlyAddedProduct;
         }
 
-        /*returns the products with the higehst TimesBought*/
-        public IQueryable<AirConditioner> MostBoughtProducts(int count)
+        /*returns the products with the highest TimesBought*/
+        public async Task<IQueryable<AirConditioner>> MostBoughtProductsAsync(int count)
         {
-            var result = this._repo.All().OrderBy(p => p.TimesBought).Take(count);
+            IQueryable<AirConditioner> result = null;
+
+            await Task.Run(() =>
+            {
+                result = this._repo
+                    .All()
+                    .OrderBy(p => p.TimesBought)
+                    .Take(count);
+            });
 
             return result;
+        }
+
+        public async Task<AirConditioner> IncreaseTimesBoughtAsync(string productId, int count)
+        {
+            AirConditioner product = null;
+            
+            await Task.Run(() =>
+            {
+               product = this._repo.FindById(productId);
+            });
+
+            if (product == null)
+            {
+                throw new ProductNotFoundException();
+            }
+
+            product.TimesBought++;
+
+            await this._repo.SaveChangesAsync();
+
+            return product;
         }
     }
 }

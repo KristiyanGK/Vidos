@@ -16,6 +16,7 @@ using Vidos.Data.Models;
 using Vidos.Services.DataServices;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Mapping;
+using Vidos.Services.Models.Brand.ViewModels;
 using Vidos.Services.Models.Order.ViewModels;
 using Vidos.Services.Models.Product.ViewModels;
 using Vidos.Services.Models.Reviews.ViewModels;
@@ -38,7 +39,6 @@ namespace Vidos.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //TODO Add validation for review Models
             AutoMapperConfig.RegisterMappings(
                 typeof(ListProductsViewModel).Assembly,
                 typeof(ProductDetailsViewModel).Assembly,
@@ -48,7 +48,8 @@ namespace Vidos.Web
                 typeof(ReviewsViewModel).Assembly,
                 typeof(AddReviewViewModel).Assembly,
                 typeof(ListReviewsViewModel).Assembly,
-                typeof(EditReviewViewModel).Assembly
+                typeof(EditReviewViewModel).Assembly,
+                typeof(BrandDetailsViewModel).Assembly
             );
 
             StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
@@ -78,6 +79,7 @@ namespace Vidos.Web
 
             services.AddAutoMapper();
             services.AddDistributedMemoryCache();
+            services.AddResponseCaching();
             services.AddSession(options =>
             {
                 options.IdleTimeout = Constants.SessionIdleTimeoutTimespan;
@@ -112,6 +114,7 @@ namespace Vidos.Web
             app.UseSession();
             app.UseAuthentication();
             app.UseStatusCodePagesWithReExecute("/error/{0}");
+            app.UseResponseCaching();
 
             if (env.IsDevelopment())
             {
@@ -124,13 +127,18 @@ namespace Vidos.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "manageOrders",
+                    template: "{area:exists}/{controller=Order}/{action=Checkout}"
+                );
+
                 routes.MapRoute(
                     name: "shopping",
                     template: "{area:exists}/{controller=Products}/{action=All}/{id?}"

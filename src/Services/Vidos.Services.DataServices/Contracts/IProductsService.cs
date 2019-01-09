@@ -13,6 +13,8 @@ namespace Vidos.Services.DataServices.Contracts
 
         Task<AirConditioner> AddAsync(ProductsCreateViewModel productModel);
 
-        IQueryable<AirConditioner> MostBoughtProducts(int count);  
+        Task<IQueryable<AirConditioner>> MostBoughtProductsAsync(int count);
+
+        Task<AirConditioner> IncreaseTimesBoughtAsync(string productId, int count);
     }
 }

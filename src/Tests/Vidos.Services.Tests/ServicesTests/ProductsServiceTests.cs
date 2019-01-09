@@ -142,14 +142,14 @@ namespace Vidos.Services.Tests.ServicesTests
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
-        public void MostBoughtProductsShouldReturnCorrectProducts(int count)
+        public async Task MostBoughtProductsShouldReturnCorrectProducts(int count)
         {
             repo.Setup(r => r.All())
                 .Returns(sampleProducts.AsQueryable());
 
             var service = new ProductsService(repo.Object, null);
 
-            var result = service.MostBoughtProducts(count);
+            var result = await service.MostBoughtProductsAsync(count);
 
             var expectedResult = sampleProducts.OrderBy(p => p.TimesBought).Take(count);
 

@@ -1,0 +1,27 @@
+﻿@using Vidos.Web.Common.Constants
+@model Vidos.Services.Models.Brand.ViewModels.BrandDetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Name + " Details";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <img class="img-fluid" src="~/@Model.LogoPath"/>
+    </div>
+    <div class="col-md-6">
+        <h1 id="BrandName">@Html.DisplayFor(model => model.Name)</h1>
+        <p>
+            @Html.DisplayFor(model => model.Information)
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <a href="@Url.Action("All",
+                     "Products",
+                     new {area = Constants.ShoppingArea})">
+            Към страница с продукти
+        </a>
+    </div>  
+</div>

@@ -44,5 +44,10 @@
 
 <div class="text-center">
     <a class="btn btn-primary" href="@Model.ReturnUrl">Продължи пазаруването</a>
-    <a class="btn btn-primary" asp-action="Checkout" asp-controller="Order">Поръчай</a>
+    <a class="btn btn-primary"
+       asp-area="ManageOrder"
+       asp-action="Checkout"
+       asp-controller="Order">
+        Поръчай
+    </a>
 </div>

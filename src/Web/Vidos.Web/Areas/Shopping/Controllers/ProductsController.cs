@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using AutoMapper;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Mapping;
 using Vidos.Services.Models.Product.ViewModels;
+using Vidos.Web.Common.Constants;
 using Vidos.Web.Common.Exceptions;
 using X.PagedList;
 
@@ -36,6 +37,8 @@ namespace Vidos.Web.Areas.Shopping.Controllers
         }
 
         [HttpGet]
+        [ResponseCache(Duration = Constants.BaseResponsiveCacheDuration,
+            Location = ResponseCacheLocation.Client)]
         public IActionResult Details(string id, string query)
         {
             ProductDetailsViewModel product;

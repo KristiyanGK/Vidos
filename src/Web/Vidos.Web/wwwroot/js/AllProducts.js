@@ -1,4 +1,6 @@
-﻿var priceDefault = 0;
+﻿var brandNamesUrl = "/Shopping/Brand/AllNames";
+
+var priceDefault = 0;
 var brandDefault = "Всички";
 var productsCountDefault = 9; 
 
@@ -46,7 +48,7 @@ function getParameterByName(name, url) {
 $(document).ready(function () {
     var dropDown = $("#BrandsSelector");
 
-    $.getJSON("/api/Brand", function (result) {
+    $.getJSON(brandNamesUrl, function (result) {
         $.each(result, function (key, entry) {
             dropDown.append($("<option></option>").attr("value", entry).text(entry));
         });

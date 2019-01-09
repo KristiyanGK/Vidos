@@ -19,24 +19,30 @@ namespace Vidos.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var mostBoughtProducts = await _productsService
-                .MostBoughtProducts(Constants.HomeIndexProductCount)
+            var mostBoughtProducts = await (await _productsService
+                .MostBoughtProductsAsync(Constants.HomeIndexProductCount))
                 .To<ListProductsViewModel>()
                 .ToListAsync();
 
             return View(mostBoughtProducts);
         }
 
+        [ResponseCache(Duration = Constants.BaseResponsiveCacheDuration,
+            Location = ResponseCacheLocation.Client)]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [ResponseCache(Duration = Constants.BaseResponsiveCacheDuration,
+            Location = ResponseCacheLocation.Client)]
         public IActionResult About()
         {
             return View();
         }
 
+        [ResponseCache(Duration = Constants.BaseResponsiveCacheDuration,
+            Location = ResponseCacheLocation.Client)]
         public IActionResult Contact()
         {
             return View();

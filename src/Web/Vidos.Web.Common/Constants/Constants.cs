@@ -13,7 +13,9 @@ namespace Vidos.Web.Common.Constants
 
         public const string AdministratorRole = "Admin";
 
-        public const string AdminOrUserRole = AdministratorRole + ", " + UserRole;
+        public const string AdminOrUserRole = AdministratorRole 
+                                              + ", " 
+                                              + UserRole;
 
         public const string UserRole = "User";
 
@@ -36,6 +38,10 @@ namespace Vidos.Web.Common.Constants
         public const string SessionCartKey = "Cart";
 
         public const string ShoppingArea = "Shopping";
+
+        public const string ManageOrderArea = "ManageOrder";
+
+        public const int BaseResponsiveCacheDuration = 30;
 
         public const int CentsInLev = 100;
 

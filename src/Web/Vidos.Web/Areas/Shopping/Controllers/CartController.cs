@@ -1,13 +1,9 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using Vidos.Services.DataServices.Contracts;
 using Vidos.Services.Mapping;
 using Vidos.Services.Models.Cart.ViewModels;
 using Vidos.Services.Models.CartItem.ViewModels;
-using Vidos.Web.Controllers;
 
 namespace Vidos.Web.Areas.Shopping.Controllers
 {
