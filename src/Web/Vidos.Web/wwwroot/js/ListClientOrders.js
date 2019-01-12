@@ -20,3 +20,10 @@
         }
     }
 });
+
+$("td div").each(function (key, val) {
+    var date = moment(val.textContent).format("DD/MM/YYYY HH:mm:ss");
+    var utc = moment.utc(date).toDate();
+    var local = moment(utc).local().format("YYYY-MM-DD HH:mm:ss");
+    val.innerHTML = local;
+});

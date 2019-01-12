@@ -56,7 +56,9 @@
                 @Html.DisplayFor(modelItem => item.IsShipped)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PurchaseDate)
+                <div>
+                    @Html.DisplayFor(modelItem => item.PurchaseDate)
+                </div>   
             </td>
             <td>
                 @Html.ActionLink(
@@ -72,5 +74,6 @@
 
 @section Scripts
 {
+    <script src="~/lib/momentjs/moment.min.js"></script>
     <script src="~/js/ListClientOrders.js"></script>
 }

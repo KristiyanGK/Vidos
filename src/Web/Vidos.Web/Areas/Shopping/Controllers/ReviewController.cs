@@ -27,7 +27,7 @@ namespace Vidos.Web.Areas.Shopping.Controllers
             this._userManager = userManager;
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Create(string productId)
         {
             string currUserId = string.Empty;

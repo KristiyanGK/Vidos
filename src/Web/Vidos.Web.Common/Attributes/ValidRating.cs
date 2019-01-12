@@ -20,7 +20,7 @@ namespace Vidos.Web.Common.Attributes
             bool isRating = (int) value >= Constants.Constants.MinRating 
                             && (int) value <= Constants.Constants.MaxRating;
 
-            return isRating
+            return !isRating
                 ? new ValidationResult(this.ErrorMessage) 
                 : ValidationResult.Success;
         }
