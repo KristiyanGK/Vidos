@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Vidos.Data.Models;
 using Vidos.Services.Models.Product.ViewModels;
@@ -16,5 +17,7 @@ namespace Vidos.Services.DataServices.Contracts
         Task<IQueryable<AirConditioner>> MostBoughtProductsAsync(int count);
 
         Task<AirConditioner> IncreaseTimesBoughtAsync(string productId, int count);
+
+        Task IncreaseTimesBoughtAllAsync(IEnumerable<CartItem> cartItems);
     }
 }

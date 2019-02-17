@@ -112,11 +112,8 @@ namespace Vidos.Web.Areas.ManageOrder.Controllers
         {
             var products = this._cartService.Items;
 
-            foreach (var cartItem in products)
-            {
-                await this._productsService
-                    .IncreaseTimesBoughtAsync(cartItem.Product.Id, cartItem.Quantity);
-            }
+            await this._productsService
+                .IncreaseTimesBoughtAllAsync(products);
 
             this._cartService.Clear();
 

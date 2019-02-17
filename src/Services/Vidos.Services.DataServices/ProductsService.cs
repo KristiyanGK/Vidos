@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -90,6 +91,14 @@ namespace Vidos.Services.DataServices
             });
 
             return result;
+        }
+
+        public async Task IncreaseTimesBoughtAllAsync(IEnumerable<CartItem> cartItems)
+        {
+            foreach (var cartItem in cartItems)
+            {
+                await this.IncreaseTimesBoughtAsync(cartItem.Id, cartItem.Quantity);
+            }
         }
 
         public async Task<AirConditioner> IncreaseTimesBoughtAsync(string productId, int count)
